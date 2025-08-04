@@ -11,7 +11,7 @@ A modern, responsive cake shop website built with Next.js, featuring a beautiful
 - **API Integration**: Ready for backend integration with product data
 
 ## Project Structure
-
+ 
 ```
 app/
 ├── app/
