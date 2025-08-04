@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import { getProductsUrl } from '../config/api';
 import Link from 'next/link';
-
+export const runtime = 'edge';
 export default function ShopPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

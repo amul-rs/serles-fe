@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ProductCard from '../../../components/ProductCard';
 import { getProductsUrl } from '../../../config/api';
 import Link from 'next/link';
+v
 
 export default function CategoryPage({ params }) {
   const [products, setProducts] = useState([]);
