@@ -7,13 +7,95 @@ export default function ProductDetails({ product }) {
   const [selectedWeight, setSelectedWeight] = useState('');
   const [customMessage, setCustomMessage] = useState('');
 
-  useEffect(() => {
+  // Generate weight options based on available data
+  const generateWeightOptions = () => {
     if (product?.weight_options?.length > 0) {
-      setSelectedWeight(String(product.weight_options[0].id));
-    } else {
-      setSelectedWeight('base');
+      return product.weight_options;
     }
-  }, [product]);
+    
+    // Create multiple weight options based on available price data
+    const options = [];
+    
+    // Option 1: Standard Weight (using base_price or min_price)
+    if (product?.base_price || product?.min_price) {
+      options.push({
+        id: 'standard',
+        display_name: 'Standard Weight',
+        price: product.base_price || product.min_price
+      });
+    }
+    
+    // Option 2: Half Weight (50% of base price)
+    if (product?.base_price || product?.min_price) {
+      const basePrice = parseFloat(product.base_price || product.min_price);
+      options.push({
+        id: 'half',
+        display_name: 'Half Weight',
+        price: (basePrice * 0.5).toFixed(2)
+      });
+    }
+    
+    // Option 3: Double Weight (200% of base price)
+    if (product?.base_price || product?.min_price) {
+      const basePrice = parseFloat(product.base_price || product.min_price);
+      options.push({
+        id: 'double',
+        display_name: 'Double Weight',
+        price: (basePrice * 2).toFixed(2)
+      });
+    }
+    
+    // Option 4: Large Size (150% of base price)
+    if (product?.base_price || product?.min_price) {
+      const basePrice = parseFloat(product.base_price || product.min_price);
+      options.push({
+        id: 'large',
+        display_name: 'Large Size',
+        price: (basePrice * 1.5).toFixed(2)
+      });
+    }
+    
+    // If no price data available, create options based on price_range
+    if (options.length === 0 && product?.price_range) {
+      const match = product.price_range.match(/[₹$]([\d,]+(?:\.\d{2})?)/);
+      if (match) {
+        const basePrice = parseFloat(match[1].replace(',', ''));
+        options.push(
+          {
+            id: 'small',
+            display_name: 'Small Size',
+            price: (basePrice * 0.7).toFixed(2)
+          },
+          {
+            id: 'standard',
+            display_name: 'Standard Size',
+            price: basePrice.toFixed(2)
+          },
+          {
+            id: 'large',
+            display_name: 'Large Size',
+            price: (basePrice * 1.3).toFixed(2)
+          }
+        );
+      }
+    }
+    
+    return options.length > 0 ? options : [
+      {
+        id: 'standard',
+        display_name: 'Standard Weight',
+        price: '0.00'
+      }
+    ];
+  };
+
+  const weightOptions = generateWeightOptions();
+
+  useEffect(() => {
+    if (weightOptions.length > 0) {
+      setSelectedWeight(String(weightOptions[0].id));
+    }
+  }, [weightOptions]);
 
   const handleQuantityChange = (newQuantity) => {
     if (newQuantity >= 1) setQuantity(newQuantity);
@@ -24,7 +106,7 @@ export default function ProductDetails({ product }) {
   };
 
   const getSelectedWeightOption = () => {
-    return product?.weight_options?.find(opt => String(opt.id) === selectedWeight) || null;
+    return weightOptions.find(opt => String(opt.id) === selectedWeight) || weightOptions[0];
   };
 
   const getSelectedWeightPrice = () => {
@@ -32,12 +114,34 @@ export default function ProductDetails({ product }) {
     if (selectedOption?.price) return `₹${parseFloat(selectedOption.price).toFixed(2)}`;
     if (product?.base_price) return `₹${parseFloat(product.base_price).toFixed(2)}`;
     if (product?.min_price) return `₹${parseFloat(product.min_price).toFixed(2)}`;
+    if (product?.price_range) {
+      // Extract price from price_range string
+      const match = product.price_range.match(/[₹$]([\d,]+(?:\.\d{2})?)/);
+      if (match) {
+        return `₹${parseFloat(match[1].replace(',', '')).toFixed(2)}`;
+      }
+    }
     return '₹0.00';
   };
 
   const calculateTotalPrice = () => {
     const selectedOption = getSelectedWeightOption();
-    const unitPrice = selectedOption?.price ? parseFloat(selectedOption.price) : parseFloat(product?.base_price || product?.min_price || '0');
+    let unitPrice = 0;
+    
+    if (selectedOption?.price) {
+      unitPrice = parseFloat(selectedOption.price);
+    } else if (product?.base_price) {
+      unitPrice = parseFloat(product.base_price);
+    } else if (product?.min_price) {
+      unitPrice = parseFloat(product.min_price);
+    } else if (product?.price_range) {
+      // Extract price from price_range string
+      const match = product.price_range.match(/[₹$]([\d,]+(?:\.\d{2})?)/);
+      if (match) {
+        unitPrice = parseFloat(match[1].replace(',', ''));
+      }
+    }
+    
     return isNaN(unitPrice) ? '₹0.00' : `₹${(unitPrice * quantity).toFixed(2)}`;
   };
 
@@ -53,7 +157,7 @@ export default function ProductDetails({ product }) {
   return (
     <div className="product__details__text">
       <div className="product__label">
-        <Link href={`/shop/category/${product.category?.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+        <Link href={`/shop/${product.category?.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
           {product.category?.name || 'Product'}
         </Link>
       </div>
@@ -63,7 +167,7 @@ export default function ProductDetails({ product }) {
       <ul>
         <li>SKU: <span>{product.sku}</span></li>
         <li>Category: <span>
-          <Link href={`/shop/category/${product.category?.slug}`} style={{ color: '#667eea', textDecoration: 'none' }}>
+          <Link href={`/shop/${product.category?.slug}`} style={{ color: '#667eea', textDecoration: 'none' }}>
             {product.category?.name}
           </Link>
         </span></li>
@@ -83,21 +187,20 @@ export default function ProductDetails({ product }) {
         <div style={{ marginBottom: '20px' }}>
           <h6 style={{ marginBottom: '10px', fontSize: '16px', fontWeight: '600' }}>Select Weight</h6>
           <div style={{ display: 'flex', flexDirection: 'row', gap: '10px', flexWrap: 'wrap' }}>
-            {product?.weight_options?.length > 0 ? (
-              product.weight_options.map(option => (
-                <label key={option.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '15px', border: String(option.id) === selectedWeight ? '2px solid #667eea' : '1px solid #ddd', borderRadius: '8px', cursor: 'pointer', backgroundColor: String(option.id) === selectedWeight ? '#f8f9ff' : '#fff', transition: 'all 0.3s ease', minWidth: '120px', textAlign: 'center' }}>
-                  <input type="radio" name="weight" value={option.id} checked={String(option.id) === selectedWeight} onChange={(e) => handleWeightChange(e.target.value)} style={{ marginBottom: '8px' }} />
-                  <div style={{ fontWeight: '600', fontSize: '14px', marginBottom: '5px' }}>{option.display_name}</div>
-                  <div style={{ color: '#667eea', fontSize: '14px', fontWeight: '600' }}>₹{option?.price ? parseFloat(option.price).toFixed(2) : '0.00'}</div>
-                </label>
-              ))
-            ) : (
-              <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '15px', border: selectedWeight === 'base' ? '2px solid #667eea' : '1px solid #ddd', borderRadius: '8px', cursor: 'pointer', backgroundColor: selectedWeight === 'base' ? '#f8f9ff' : '#fff', transition: 'all 0.3s ease', minWidth: '120px', textAlign: 'center' }}>
-                <input type="radio" name="weight" value="base" checked={selectedWeight === 'base'} onChange={(e) => handleWeightChange(e.target.value)} style={{ marginBottom: '8px' }} />
-                <div style={{ fontWeight: '600', fontSize: '14px', marginBottom: '5px' }}>Standard Weight</div>
-                <div style={{ color: '#667eea', fontSize: '14px', fontWeight: '600' }}>{product.base_price ? `₹${product.base_price}` : `₹${product.min_price}`}</div>
+            {weightOptions.map(option => (
+              <label key={option.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '15px', border: String(option.id) === selectedWeight ? '2px solid #667eea' : '1px solid #ddd', borderRadius: '8px', cursor: 'pointer', backgroundColor: String(option.id) === selectedWeight ? '#f8f9ff' : '#fff', transition: 'all 0.3s ease', minWidth: '120px', textAlign: 'center' }}>
+                <input 
+                  type="radio" 
+                  name="weight" 
+                  value={option.id} 
+                  checked={String(option.id) === selectedWeight} 
+                  onChange={(e) => handleWeightChange(e.target.value)} 
+                  style={{ marginBottom: '8px' }} 
+                />
+                <div style={{ fontWeight: '600', fontSize: '14px', marginBottom: '5px' }}>{option.display_name}</div>
+                <div style={{ color: '#667eea', fontSize: '14px', fontWeight: '600' }}>₹{option?.price ? parseFloat(option.price).toFixed(2) : '0.00'}</div>
               </label>
-            )}
+            ))}
           </div>
         </div>
 

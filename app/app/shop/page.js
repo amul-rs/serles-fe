@@ -255,7 +255,7 @@ export default function ShopPage() {
                   {categories.map(category => (
                     <Link 
                       key={category}
-                      href={`/shop/category/${category}`}
+                      href={`/shop/${category}`}
                       className={`category-tag ${selectedCategory === category ? 'active' : ''}`}
                       onClick={(e) => {
                         e.preventDefault();

@@ -37,12 +37,12 @@ export default function ProductCard({ product }) {
         </div>
         <div className="product__item__text">
           <h6>
-            <Link href={`/${product.category?.slug}/${product.slug}`}>{product.name}</Link>
+            <Link href={`/shop/${product.category?.slug}/${product.slug}`}>{product.name}</Link>
           </h6>
           <div className="product__item__price">{product.price_range}</div>
           <div className="product__item__category" style={{ marginBottom: '10px' }}>
             <Link 
-              href={`/shop/category/${product.category?.slug}`}
+              href={`/shop/${product.category?.slug}`}
               style={{
                 fontSize: '12px',
                 color: '#667eea',
@@ -53,7 +53,7 @@ export default function ProductCard({ product }) {
             </Link>
           </div>
           <div className="cart_add">
-            <Link href={`/${product.category?.slug}/${product.slug}`}>View Details</Link>
+            <Link href={`/shop/${product.category?.slug}/${product.slug}`}>View Details</Link>
           </div>
         </div>
       </div>

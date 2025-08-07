@@ -109,7 +109,7 @@ export default async function ProductDetailPage({ params }) {
               <div className="breadcrumb__links">
                 <Link href="/">Home</Link>
                 <Link href="/shop">Shop</Link>
-                <Link href={`/shop/category/${product.category?.slug}`}>{product.category?.name}</Link>
+                <Link href={`/shop/${product.category?.slug}`}>{product.category?.name}</Link>
                 <span>{product.name}</span>
               </div>
             </div>
