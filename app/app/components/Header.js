@@ -115,7 +115,7 @@ export default function Header() {
                 <ul>
                   <li><Link href="/">Home</Link></li>
                   <li><Link href="/about">About</Link></li>
-                  <li className="active"><Link href="/shop">Shop</Link></li>
+                  <li className="active"><Link href="/shop">Cakes</Link></li>
                   <li><a href="#">Pages</a>
                     <ul className="dropdown">
                       <li><Link href="/shop-details">Shop Details</Link></li>

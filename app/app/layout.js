@@ -1,6 +1,6 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import './globals.css';
+import './globals.scss';
 
 export const metadata = {
   title: 'Cake Shop - Delicious Treats',
@@ -51,18 +51,19 @@ export default function RootLayout({ children }) {
         {/* Bootstrap JS */}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         
-        {/* Template JS Files - Optional */}
-        <script src="/js/main.js"></script>
-        <script src="/js/jquery.nice-select.min.js"></script>
-        <script src="/js/jquery.barfiller.js"></script>
-        <script src="/js/jquery.magnific-popup.min.js"></script>
-        <script src="/js/jquery.slicknav.js"></script>
-        <script src="/js/owl.carousel.min.js"></script>
-        <script src="/js/jquery.nicescroll.min.js"></script>
+        {/* Template JS Files - Load asynchronously */}
+        <script src="/js/jquery.slicknav.js" defer></script>
+        <script src="/js/jquery.nice-select.min.js" defer></script>
+        <script src="/js/jquery.barfiller.js" defer></script>
+        <script src="/js/jquery.magnific-popup.min.js" defer></script>
+        <script src="/js/owl.carousel.min.js" defer></script>
+        <script src="/js/jquery.nicescroll.min.js" defer></script>
+        <script src="/js/main.js" defer></script>
         
         {/* Preloader Script */}
         <script dangerouslySetInnerHTML={{
           __html: `
+            // Wait for all scripts to load before initializing
             window.addEventListener('load', function() {
               const preloader = document.getElementById('preloder');
               if (preloader) {
@@ -71,6 +72,51 @@ export default function RootLayout({ children }) {
                   preloader.style.display = 'none';
                 }, 300);
               }
+              
+              // Initialize plugins after everything is loaded
+              setTimeout(function() {
+                if (typeof $ !== 'undefined') {
+                  // Initialize slicknav if it exists
+                  if (typeof $.fn.slicknav !== 'undefined') {
+                    try {
+                      $(".mobile-menu").slicknav({
+                        prependTo: '#mobile-menu-wrap',
+                        allowParentLinks: true
+                      });
+                    } catch (e) {
+                      console.warn('Slicknav initialization failed:', e);
+                    }
+                  }
+                  
+                  // Initialize other plugins
+                  if (typeof $.fn.niceSelect !== 'undefined') {
+                    $('select').niceSelect();
+                  }
+                  
+                  if (typeof $.fn.magnificPopup !== 'undefined') {
+                    $('.image-popup').magnificPopup({
+                      type: 'image',
+                      closeOnContentClick: true,
+                      closeBtnInside: false,
+                      fixedContentPos: true,
+                      mainClass: 'mfp-no-margins mfp-with-zoom',
+                      gallery: {
+                        enabled: true,
+                        navigateByImgClick: true,
+                        preload: [0, 1]
+                      },
+                      image: {
+                        verticalFit: true
+                      },
+                      callbacks: {
+                        elementParse: function(item) {
+                          item.el.attr('title', item.el.attr('title'));
+                        }
+                      }
+                    });
+                  }
+                }
+              }, 1000); // Wait 1 second for all scripts to load
             });
             
             // Fallback: hide preloader after 3 seconds if load event doesn't fire
