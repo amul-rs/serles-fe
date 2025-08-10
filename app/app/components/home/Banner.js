@@ -104,7 +104,8 @@ export default function Banner() {
           overflow: "hidden"
         }}>
           {banners.map((banner, index) => (
-            <div
+            <Link href={banner.link || "/"} key={banner.id}>
+            <div 
               key={banner.id}
               style={{
                 position: "absolute",
@@ -123,18 +124,18 @@ export default function Banner() {
               }}
             >
               {/* Overlay for better text readability */}
-              <div style={{
+              {/* <div style={{
                 position: "absolute",
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: "rgba(0,0,0,0.3)"
-              }}></div>
+                backgroudn: "rgba(0,0,0,0.3)"
+              }}></div> */}
               
               {/* Content */}
               <div className="text-center text-white" style={{ position: "relative", zIndex: 2 }}>
-                {banner.title && (
+                {/* {banner.title && (
                   <h2 style={{ 
                     fontSize: "2.5rem", 
                     fontWeight: "700", 
@@ -143,36 +144,11 @@ export default function Banner() {
                   }}>
                     {banner.title}
                   </h2>
-                )}
-                {banner.button_text && (
-                  <Link 
-                    href={banner.link || "/"} 
-                    style={{
-                      display: "inline-block",
-                      background: "#e4718a",
-                      color: "white",
-                      padding: "12px 30px",
-                      borderRadius: "25px",
-                      textDecoration: "none",
-                      fontWeight: "600",
-                      fontSize: "1.1rem",
-                      transition: "all 0.3s ease",
-                      boxShadow: "0 4px 15px rgba(228, 113, 138, 0.4)"
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.background = "#d1627a";
-                      e.target.style.transform = "translateY(-2px)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.background = "#e4718a";
-                      e.target.style.transform = "translateY(0)";
-                    }}
-                  >
-                    {banner.button_text}
-                  </Link>
-                )}
+                )} */}
+              
               </div>
             </div>
+            </Link>
           ))}
         </div>
 

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react";
-import { getProductsUrl, getCategoriesUrl } from '../../config/api';
+import { getProductsUrl, getCategoriesUrl, getProductDetailUrl } from '../../config/api';
 import apiCache from '../../utils/cache';
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
@@ -61,7 +61,7 @@ export default function Menu() {
           productsItems.map(async (product) => {
             try {
               const detailedProduct = await apiCache.fetchWithCache(
-                `http://127.0.0.1:8000/api/products/${product.id}/?format=json`
+                getProductDetailUrl(product.id)
               );
               return detailedProduct;
             } catch (error) {

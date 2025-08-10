@@ -205,12 +205,17 @@ export default function Social() {
                             }}>
                                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "10px" }}>
                                     <div style={{ display: "flex", gap: "3px", marginRight: "15px" }}>
-                                        {[1, 2, 3, 4, 5].map((star) => (
-                                            <i key={star} className="fas fa-star" style={{ 
-                                                color: "#ffc107", 
-                                                fontSize: "1.5rem" 
-                                            }}></i>
+                                        {[1, 2, 3, 4, 5].map((star, idx) => (
+                                            <i 
+                                                key={`overall-star-${star}-${idx}`} 
+                                                className="fas fa-star"  
+                                                style={{ 
+                                                    color: "#ffc107", 
+                                                    fontSize: "1.5rem" 
+                                                }}
+                                            ></i>
                                         ))}
+                                        
                                     </div>
                                     <span style={{ fontSize: "2rem", fontWeight: "700", color: "#333" }}>5.0</span>
                                 </div>

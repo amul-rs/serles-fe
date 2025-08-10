@@ -6,7 +6,8 @@ const nextConfig = {
       'localhost', 
       '127.0.0.1',
       'serlesbake.in',
-      'www.serlesbake.in'
+      'www.serlesbake.in',
+      'serlesbackend.vercel.app'
     ],
     unoptimized: false,
     formats: ['image/webp', 'image/avif'],
@@ -30,6 +31,16 @@ const nextConfig = {
   
   // Output configuration
   output: 'standalone',
+  
+  // Generate sitemap at build time
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
+    ];
+  },
   
   // Security headers
   async headers() {

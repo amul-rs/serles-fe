@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { use } from "react";
 import { useRouter } from "next/navigation";
 import { notFound } from "next/navigation";
 import { getProductsUrl, getCategoriesUrl, getTagsUrl } from "../../config/api";
@@ -12,8 +11,7 @@ import useProductFilters from "../../hooks/useProductFilters";
 import apiCache from "../../utils/cache";
 
 export default function CategoryPageClient({ params }) {
-  const unwrappedParams = use(params);
-  const categorySlug = unwrappedParams.categorySlug ?? unwrappedParams["category-slug"];
+  const categorySlug = params.categorySlug ?? params["category-slug"];
   const router = useRouter();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);

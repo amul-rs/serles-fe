@@ -1,18 +1,16 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { use } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getProductsUrl, getCategoriesUrl } from "../../../config/api";
+import { getProductsUrl, getCategoriesUrl, getProductDetailUrl } from "../../../config/api";
 import Breadcrumb from "../../../components/Breadcrumb";
 import ProductCard from "../../../components/ProductCard";
 import apiCache from "../../../utils/cache";
 
 export default function ProductDetailPageClient({ params }) {
-  const unwrappedParams = use(params);
-  const categorySlug = unwrappedParams.categorySlug ?? unwrappedParams["category-slug"];
-  const productSlug = unwrappedParams.productSlug ?? unwrappedParams["product-slug"];
+  const categorySlug = params.categorySlug ?? params["category-slug"];
+  const productSlug = params.productSlug ?? params["product-slug"];
   const router = useRouter();
   
   const [product, setProduct] = useState(null);
@@ -53,7 +51,7 @@ export default function ProductDetailPageClient({ params }) {
         }
 
         // Fetch individual product data to get weight_options (with caching)
-        const individualProductData = await apiCache.fetchWithCache(`http://127.0.0.1:8000/api/products/${foundProductFromList.id}/?format=json`);
+        const individualProductData = await apiCache.fetchWithCache(getProductDetailUrl(foundProductFromList.id));
 
         // Get related products (same category, different products)
         const related = allProducts.filter(p => 

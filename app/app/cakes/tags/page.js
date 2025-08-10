@@ -5,6 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Breadcrumb from "../../components/Breadcrumb";
 import apiCache from "../../utils/cache";
+import { getProductsUrl, getTagsUrl } from "../../config/api";
 
 export default function TagsPage() {
   const router = useRouter();
@@ -13,9 +14,7 @@ export default function TagsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Get API URLs
-  const getTagsUrl = () => "http://127.0.0.1:8000/api/tags/?format=json";
-  const getProductsUrl = () => "http://127.0.0.1:8000/api/products/?format=json";
+
 
   // Calculate product count for each tag
   const calculateTagCounts = useCallback((tags, products) => {

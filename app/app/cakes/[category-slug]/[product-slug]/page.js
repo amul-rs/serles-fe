@@ -1,12 +1,14 @@
 import { Suspense } from "react";
-import { getProductsUrl, getCategoriesUrl } from "../../../config/api";
+import { getProductsUrl, getCategoriesUrl, getProductDetailUrl } from "../../../config/api";
 import ProductDetailPageClient from "./ProductDetailPageClient";
 import apiCache from "../../../utils/cache";
 
 // Generate metadata for the product detail page
 export async function generateMetadata({ params }) {
-  const categorySlug = params["category-slug"];
-  const productSlug = params["product-slug"];
+  // Await params in Next.js 15
+  const resolvedParams = await params;
+  const categorySlug = resolvedParams["category-slug"];
+  const productSlug = resolvedParams["product-slug"];
   
   try {
     // Fetch data for metadata
@@ -47,8 +49,8 @@ export async function generateMetadata({ params }) {
       };
     }
 
-    // Fetch individual product data to get complete information
-    const individualProductData = await apiCache.fetchWithCache(`http://127.0.0.1:8000/api/products/${foundProductFromList.id}/?format=json`);
+    // Fetch individual product data to get complete information using proper API URL
+    const individualProductData = await apiCache.fetchWithCache(getProductDetailUrl(foundProductFromList.id));
 
     return {
       title: `${individualProductData.name} - Serle's Bake | From Our Oven to Your Heart`,
@@ -97,10 +99,13 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function ProductDetailPage({ params }) {
+export default async function ProductDetailPage({ params }) {
+  // Await params in Next.js 15
+  const resolvedParams = await params;
+  
   return (
     <Suspense fallback={<div className="text-center py-5">Loading...</div>}>
-      <ProductDetailPageClient params={params} />
+      <ProductDetailPageClient params={resolvedParams} />
     </Suspense>
   );
 }

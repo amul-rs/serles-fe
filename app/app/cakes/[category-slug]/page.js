@@ -5,7 +5,9 @@ import apiCache from "../../utils/cache";
 
 // Generate metadata for the category page
 export async function generateMetadata({ params }) {
-  const categorySlug = params["category-slug"];
+  // Await params in Next.js 15
+  const resolvedParams = await params;
+  const categorySlug = resolvedParams["category-slug"];
   
   try {
     // Fetch data for metadata
@@ -93,10 +95,13 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function CategoryPage({ params }) {
+export default async function CategoryPage({ params }) {
+  // Await params in Next.js 15
+  const resolvedParams = await params;
+  
   return (
     <Suspense fallback={<div className="text-center py-5">Loading...</div>}>
-      <CategoryPageClient params={params} />
+      <CategoryPageClient params={resolvedParams} />
     </Suspense>
   );
 }

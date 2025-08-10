@@ -9,11 +9,11 @@ import ProductCard from "../../../components/ProductCard";
 import ProductTags from "../../../components/ProductTags";
 import useProductFilters from "../../../hooks/useProductFilters";
 import apiCache from "../../../utils/cache";
+import { getProductsUrl, getCategoriesUrl, getTagsUrl } from "../../../config/api";
 
 export default function TagPage({ params }) {
   const router = useRouter();
-  const unwrappedParams = React.use(params);
-  const tagSlug = unwrappedParams["tag-slug"];
+  const tagSlug = params["tag-slug"];
   
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -21,11 +21,6 @@ export default function TagPage({ params }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [dataFetched, setDataFetched] = useState(false);
-
-  // Get API URLs
-  const getCategoriesUrl = () => "http://127.0.0.1:8000/api/categories/?format=json";
-  const getProductsUrl = () => "http://127.0.0.1:8000/api/products/?format=json";
-  const getTagsUrl = () => "http://127.0.0.1:8000/api/tags/?format=json";
 
   // Filter products by tag
   const filterProductsByTag = useCallback((products, tagSlug) => {
