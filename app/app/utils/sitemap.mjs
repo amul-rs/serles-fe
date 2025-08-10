@@ -163,4 +163,14 @@ export function formatDate(date) {
     month: 'long',
     day: 'numeric'
   });
-} 
+}
+
+// Default export for the sitemap utility
+const sitemapUtils = {
+  fetchSitemapData,
+  generateXMLSitemap,
+  generateSitemapData,
+  formatDate
+};
+
+export default sitemapUtils; 

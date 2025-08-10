@@ -1,7 +1,7 @@
 'use client'
 import Breadcrumb from "../components/Breadcrumb";
 import Link from "next/link";
-import { generateSitemapData, formatDate } from "../utils/sitemap";
+import sitemapUtils from "../utils/sitemap.mjs";
 import { useEffect, useState } from "react";
 
 export default function SiteMapPage() {
@@ -12,7 +12,7 @@ export default function SiteMapPage() {
   useEffect(() => {
     async function fetchSitemapData() {
       try {
-        const data = await generateSitemapData();
+        const data = await sitemapUtils.generateSitemapData();
         setSitemapData(data);
       } catch (err) {
         console.error('Error fetching sitemap data:', err);
@@ -76,7 +76,7 @@ export default function SiteMapPage() {
     );
   }
 
-  const currentDate = formatDate(new Date());
+  const currentDate = sitemapUtils.formatDate(new Date());
 
   return (
     <>

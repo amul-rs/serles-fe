@@ -1,8 +1,8 @@
-import { generateXMLSitemap } from '../utils/sitemap';
+import sitemapUtils from '../utils/sitemap.mjs';
 
 export async function GET() {
   try {
-    const sitemap = await generateXMLSitemap();
+    const sitemap = await sitemapUtils.generateXMLSitemap();
     
     return new Response(sitemap, {
       headers: {

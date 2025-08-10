@@ -17,7 +17,6 @@ const nextConfig = {
   
   // Performance optimizations
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['react-icons'],
   },
   
@@ -26,7 +25,6 @@ const nextConfig = {
   poweredByHeader: false,
   generateEtags: false,
   reactStrictMode: true,
-  swcMinify: true,
   trailingSlash: false,
   
   // Security headers
