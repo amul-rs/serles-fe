@@ -1,25 +1,16 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml"
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "functions": {
+    "app/sitemap.xml/route.js": {
+      "maxDuration": 30
     },
-    {
-      "src": "/robots.txt",
-      "dest": "/robots.txt"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+    "app/robots.txt/route.js": {
+      "maxDuration": 10
     }
-  ],
+  },
   "headers": [
     {
       "source": "/(.*)",
@@ -39,6 +30,10 @@
         {
           "key": "Referrer-Policy",
           "value": "origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
     },
@@ -69,12 +64,11 @@
       ]
     }
   ],
-  "functions": {
-    "app/sitemap.xml/route.js": {
-      "maxDuration": 10
-    },
-    "app/robots.txt/route.js": {
-      "maxDuration": 10
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
     }
-  }
+  ]
 } 

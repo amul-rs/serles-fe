@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "serles-bake-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "generate-sitemap": "node scripts/generate-sitemap.js",
-    "build-with-sitemap": "npm run generate-sitemap && next build"
+    "build-with-sitemap": "npm run generate-sitemap && next build",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "next": "15.4.5",
@@ -20,5 +21,8 @@
     "eslint": "^8",
     "eslint-config-next": "15.4.5",
     "sass": "^1.69.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

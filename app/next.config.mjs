@@ -29,19 +29,6 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: false,
   
-  // Output configuration
-  output: 'standalone',
-  
-  // Generate sitemap at build time
-  async rewrites() {
-    return [
-      {
-        source: '/sitemap.xml',
-        destination: '/api/sitemap',
-      },
-    ];
-  },
-  
   // Security headers
   async headers() {
     return [
