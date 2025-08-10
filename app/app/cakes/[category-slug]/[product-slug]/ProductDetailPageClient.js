@@ -605,8 +605,8 @@ Please contact me for more details. Thank you!`;
                   WhatsApp Enquiry
                 </button>
 
-                <ul>
-                  <li><b>Availability:</b> <span>In Stock</span></li>
+                <ul className="mt-3">
+                  {/* <li><b>Availability:</b> <span>In Stock</span></li> */}
                   <li><b>SKU:</b> <span>{product.sku || 'N/A'}</span></li>
                   <li><b>Category:</b> <span>{product.category?.name || 'Cake'}</span></li>
                 </ul>

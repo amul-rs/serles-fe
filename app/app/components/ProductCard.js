@@ -16,7 +16,7 @@ export default function ProductCard({ product }) {
               alt={product.featured_image?.alt_text || product.name}
               width={300}
               height={300}
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", borderRadius: "20px" }}
             />
             {product.category && (
               <div className="product__label">
