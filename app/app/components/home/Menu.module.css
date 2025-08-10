@@ -1,0 +1,143 @@
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.menuItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(228, 113, 138, 0.15);
+  border-color: #e4718a;
+}
+
+.menuItemImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #f8f9fa;
+}
+
+.menuItemContent {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+.menuItemButton {
+  flex-shrink: 0;
+}
+
+.weightOptions {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  flex: 1;
+  width: 100%;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.weightOption {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.orderButton {
+  background: #e4718a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.orderButton:hover {
+  background: #d1627a;
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .menuItem {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .menuItemImage {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .menuItemContent {
+    width: 100%;
+  }
+  
+  .weightOptions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .weightOption {
+    flex-direction: row;
+    gap: 5px;
+    text-align: center;
+  }
+  
+  .menuItemButton {
+    width: 100%;
+  }
+  
+  .orderButton {
+    width: 100%;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .menuItem {
+    padding: 10px;
+    gap: 8px;
+  }
+  
+  .menuItemImage {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .weightOption {
+    padding: 3px 6px;
+    font-size: 0.75rem;
+  }
+  
+  .orderButton {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+} 

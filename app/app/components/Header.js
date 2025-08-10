@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { FaEnvelope, FaPhone } from 'react-icons/fa';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,79 +29,37 @@ export default function Header() {
             <div className="cart__price">Cart: <span>$0.00</span></div>
           </div>
         </div>
-        <div className="offcanvas__logo">
-          <Link href="/">
-            <Image src="/img/logo.png" alt="Logo" width={150} height={50} />
-          </Link>
-        </div>
+        
         <div id="mobile-menu-wrap"></div>
-        <div className="offcanvas__option">
-          <ul>
-            <li>USD <span className="arrow_carrot-down"></span>
-              <ul>
-                <li>EUR</li>
-                <li>USD</li>
-              </ul>
-            </li>
-            <li>ENG <span className="arrow_carrot-down"></span>
-              <ul>
-                <li>Spanish</li>
-                <li>ENG</li>
-              </ul>
-            </li>
-            <li><a href="#">Sign in</a> <span className="arrow_carrot-down"></span></li>
-          </ul>
-        </div>
+     
       </div>
       {/* Offcanvas Menu End */}
 
       {/* Header Section Begin */}
       <header className="header">
         <div className="header__top">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="header__top__inner">
-                  <div className="header__top__left">
-                    <ul>
-                      <li>USD <span className="arrow_carrot-down"></span>
-                        <ul>
-                          <li>EUR</li>
-                          <li>USD</li>
-                        </ul>
-                      </li>
-                      <li>ENG <span className="arrow_carrot-down"></span>
-                        <ul>
-                          <li>Spanish</li>
-                          <li>ENG</li>
-                        </ul>
-                      </li>
-                      <li><a href="#">Sign in</a> <span className="arrow_carrot-down"></span></li>
-                    </ul>
-                  </div>
-                  <div className="header__logo">
-                    <Link href="/">
-                      <Image src="/img/logo.png" alt="Logo" width={150} height={50} />
+          <div className="container p-0">
+            <div className="row p-0">
+              <div className="col-lg-12 m-0 p-0">
+                <div className="header-new ">
+                  <div className="inner-header d-flex align-items-center justify-content-between gap-3">
+                  <Link href="mailto:serlesbake@gmail.com" className="text-primary-light text-decoration-none d-none d-lg-block">
+                    <i className="bi bi-envelope text-primary-light d-inline-flex align-items-center justify-content-center gap-3 h-100 ">
+                      <FaEnvelope size={36} /> <p className='d-flex flex-column mb-0 h6 '>Email Us <span className="text-color">serlesbake@gmail.com</span></p>
+                    </i>
+                  </Link>
+                  <Link href="/" className='text-decoration-none d-flex align-items-center gap-3 justify-content-center col-lg-6 logo-new'>
+                      <Image src="/img/serlesbakelogo.webp" alt="Logo" width={70} height={70} />
+                      <h1 className='h1 text-white fw -bold '>Serles Bake</h1>
                     </Link>
-                  </div>
-                  <div className="header__top__right">
-                    <div className="header__top__right__links">
-                      <a href="#" className="search-switch">
-                        <Image src="/img/icon/search.png" alt="Search" width={20} height={20} />
-                      </a>
-                      <a href="#">
-                        <Image src="/img/icon/heart.png" alt="Wishlist" width={20} height={20} />
-                      </a>
-                    </div>
-                    <div className="header__top__right__cart">
-                      <a href="#">
-                        <Image src="/img/icon/cart.png" alt="Cart" width={20} height={20} />
-                        <span>0</span>
-                      </a>
-                      <div className="cart__price">Cart: <span>$0.00</span></div>
-                    </div>
+                  <Link href="tel:+916383070725" className="text-primary-light text-decoration-none d-none d-lg-block">
+                    <i className="bi bi-telephone text-primary-light d-inline-flex align-items-center justify-content-center gap-3 h-100 ">
+                      <FaPhone  size={36}  style={{transform: 'rotate(90deg)'}}/> <p className='d-flex flex-column mb-0 h6 '>Call Us <span className="text-color">+91 63830 70722</span></p>
+                    </i>
+                  </Link>
                   </div>
                 </div>
+                
               </div>
             </div>
             <div className="canvas__open" onClick={() => setIsMenuOpen(true)}>
@@ -115,18 +74,20 @@ export default function Header() {
                 <ul>
                   <li><Link href="/">Home</Link></li>
                   <li><Link href="/about">About</Link></li>
-                  <li className="active"><Link href="/shop">Cakes</Link></li>
-                  <li><a href="#">Pages</a>
-                    <ul className="dropdown">
+                  {/* <li className="active"><Link href="/cakes">Shop</Link></li> */}
+                  <li><Link href="/cakes">Cakes</Link>
+                    {/* <ul className="dropdown">
                       <li><Link href="/shop-details">Shop Details</Link></li>
                       <li><Link href="/shopping-cart">Shopping Cart</Link></li>
                       <li><Link href="/checkout">Check Out</Link></li>
                       <li><Link href="/wishlist">Wishlist</Link></li>
                       <li><Link href="/class">Class</Link></li>
                       <li><Link href="/blog-details">Blog Details</Link></li>
-                    </ul>
+                    </ul> */}
                   </li>
-                  <li><Link href="/blog">Blog</Link></li>
+                  <li><Link href="/menu">Menu&Pricing</Link></li>
+                  <li><Link href="/testimonial">Testimonials</Link></li>
+
                   <li><Link href="/contact">Contact</Link></li>
                 </ul>
               </nav>

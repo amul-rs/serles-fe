@@ -14,11 +14,14 @@
  }
   .product_grid_item {
     text-align: center;
-    h6{
-      color: var(--text-color);
-      text-decoration: none;
+    .h6{
+      color: #000;
+      text-decoration: none !important;
       text-transform: capitalize;
      margin-top: 10px;
+     &:hover{
+      color: #e4718a;
+     }
     }
     img {
       min-height: 200px;

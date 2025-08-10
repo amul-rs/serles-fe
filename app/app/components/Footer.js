@@ -1,66 +1,291 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+
+const contactInfo = [
+  {
+    icon: "fa-map-marker",
+    text: "Tenkasi, Tamil Nadu, India",
+    href: null,
+  },
+  {
+    icon: "fa-envelope",
+    text: "serlesbake@gmail.com",
+    href: "mailto:serlesbake@gmail.com",
+  },
+  {
+    icon: "fa-phone",
+    text: "+91 6383070725",
+    href: "tel:+916383070725",
+  },
+];
+
+const socialLinks = [
+  {
+    icon: "fa-facebook",
+    href: "https://www.facebook.com/serlesbake",
+    color: "#3b5998",
+    label: "FaFacebook",
+  },
+  {
+    icon: "fa-instagram",
+    href: "https://www.instagram.com/serles_bake",
+    color: "#e1306c",
+    label: "FaInstagram",
+  },
+  {
+    icon: "fa-whatsapp",
+    href: "https://wa.me/916383070725",
+    color: "#25d366",
+    label: "FaWhatsapp",
+  },
+];
+
+const workingHours = [
+  { day: "Monday - Friday", time: "08:00 am – 08:30 pm" },
+  { day: "Saturday", time: "10:00 am – 04:30 pm" },
+  { day: "Sunday", time: "10:00 am – 04:30 pm" },
+];
+
+function ContactList({ info }) {
+  return (
+    <ul style={{ color: "#fff", listStyle: "none", padding: 0, margin: 0, fontSize: "1.05rem" }}>
+      {info.map((item, idx) => (
+        <li key={idx} style={{ marginBottom: 10, display: "flex", alignItems: "center" }}>
+          <span style={{ marginRight: 10, color: "#ffb6c1" }}>
+            <i className={`fa ${item.icon}`}></i>
+          </span>
+          {item.href ? (
+            <a
+              href={item.href}
+              style={{
+                color: "#fff",
+                textDecoration: item.icon === "fa-envelope" ? "underline" : "none",
+                wordBreak: "break-all",
+              }}
+            >
+              {item.text}
+            </a>
+          ) : (
+            item.text
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function SocialIcons({ links }) {
+  return (
+    <div style={{ marginTop: 18, display: "flex", gap: 16 }}>
+      {links.map((link, idx) => {
+        let IconComponent;
+        switch (link.label) {
+          case "FaFacebook":
+            IconComponent = FaFacebook;
+            break;
+          case "FaInstagram":
+            IconComponent = FaInstagram;
+            break;
+          case "FaWhatsapp":
+            IconComponent = FaWhatsapp;
+            break;
+          default:
+            IconComponent = FaFacebook;
+        }
+        
+        return (
+          <a
+            key={idx}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={link.label}
+            style={{
+              display: "inline-block",
+              background: "#fff",
+              borderRadius: "4px",
+              padding: "7px 12px",
+              color: link.color,
+              fontSize: "1.3rem",
+              border: "2px solid #ffb6c1",
+              transition: "background 0.2s, color 0.2s",
+            }}
+          >
+            <IconComponent size={20} />
+          </a>
+                );
+      })}
+    </div>
+  );
+}
+
+function WorkingHours({ hours }) {
+  return (
+    <div style={{
+      background: "#232025",
+      borderRadius: "6px",
+      padding: "32px 24px",
+      margin: "32px 0",
+      minWidth: "220px",
+      maxWidth: "320px",
+      width: "100%",
+      color: "#fff",
+      boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start"
+    }}>
+      <h4 style={{
+        color: "#ffb6c1",
+        fontWeight: 700,
+        marginBottom: "18px",
+        letterSpacing: "1px",
+      }}>
+        WORKING HOURS
+      </h4>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "1.05rem" }}>
+        {hours.map((item, idx) => (
+          <li key={idx} style={{ marginBottom: 10 }}>
+            <span style={{ fontWeight: 600 }}>{item.day}:</span> {item.time}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
     <>
-      {/* Footer Section Begin */}
-      <footer className="footer set-bg" style={{ backgroundImage: 'url(/img/footer-bg.jpg)' }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4 col-md-6 col-sm-6">
-              <div className="footer__widget">
-                <h6>WORKING HOURS</h6>
-                <ul>
-                  <li>Monday - Friday: 08:00 am – 08:30 pm</li>
-                  <li>Saturday: 10:00 am – 16:30 pm</li>
-                  <li>Sunday: 10:00 am – 16:30 pm</li>
-                </ul>
+      <footer
+        className="footer"
+        style={{
+          background: "#18171c",
+          padding: 0,
+          borderTop: "4px solid #ffb6c1",
+        }}
+      >
+        <div className="container" style={{ maxWidth: "100vw", padding: 0 }}>
+          <div
+            className="row"
+            style={{
+              margin: 0,
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "stretch",
+              minHeight: "340px",
+            }}
+          >
+            {/* Left: About */}
+            <div
+              className="col-lg-6 col-md-12"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: "340px",
+                padding: 0,
+              }}
+            >
+              <div className="bg-primary-light"
+                style={{
+                  background: "#ffb6c1",
+                  border: "6px solid #fff",
+                  borderRadius: "6px",
+                  padding: "36px 32px 32px 32px",
+                  margin: "32px 0",
+                  width: "95%",
+                  maxWidth: "420px",
+                  textAlign: "center",
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
+                  position: "relative",
+                }}
+              >
+                <div style={{ marginBottom: "12px" }}>
+                  <Image
+                    src="/img/serlesbakelogo.webp"
+                    alt="Serle's Bake Logo"
+                    width={100}
+                    height={100}
+                  />
+                </div>
+                <h2 className="h1 text-white">
+                  SERLE&apos;S BAKE
+                </h2>
+                <p
+                  style={{
+                    color: "#fff",
+                    fontSize: "1.05rem",
+                    lineHeight: "1.7",
+                    margin: 0,
+                    textShadow: "0 1px 4px rgba(0,0,0,0.08)",
+                  }}
+                >
+                  At Serle&apos;s Bake, we craft homemade cakes with love, passion, and the finest ingredients. From birthdays to weddings, our cakes add a sweet touch to every celebration. Experience the warmth of home in every bite. We are committed to delivering freshness, quality, and happiness to your table.
+                </p>
               </div>
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-6">
-              <div className="footer__about">
-                <div className="footer__logo">
-                  <Link href="/">
-                    <Image src="/img/footer-logo.png" alt="Footer Logo" width={150} height={50} />
-                  </Link>
-                </div>
-                <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore dolore magna aliqua.</p>
-                <div className="footer__social">
-                  <a href="#"><i className="fa fa-facebook"></i></a>
-                  <a href="#"><i className="fa fa-twitter"></i></a>
-                  <a href="#"><i className="fa fa-instagram"></i></a>
-                  <a href="#"><i className="fa fa-youtube-play"></i></a>
-                </div>
+            {/* Right: Get In Touch & Working Hours */}
+            <div
+              className="col-lg-6 col-md-12"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignItems: "center",
+                background: "#18171c",
+                minHeight: "340px",
+                padding: 0,
+                gap: "0 16px",
+              }}
+            >
+              <div
+                style={{
+                  flex: "1 1 220px",
+                  minWidth: "220px",
+                  maxWidth: "320px",
+                  padding: "36px 24px 24px 24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                }}
+              >
+                <h4
+                  style={{
+                    color: "#ffb6c1",
+                    fontWeight: 700,
+                    marginBottom: "18px",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  GET IN TOUCH
+                </h4>
+                <ContactList info={contactInfo} />
+                <SocialIcons links={socialLinks} />
               </div>
-            </div>
-            <div className="col-lg-4 col-md-6 col-sm-6">
-              <div className="footer__newslatter">
-                <h6>Subscribe</h6>
-                <p>Get latest updates and offers.</p>
-                <form action="#">
-                  <input type="text" placeholder="Email" />
-                  <button type="submit"><i className="fa fa-send-o"></i></button>
-                </form>
-              </div>
+              <WorkingHours hours={workingHours} />
             </div>
           </div>
         </div>
-        <div className="copyright">
+        {/* Copyright */}
+        <div className="copyright" style={{ background: "#15141a", padding: "16px 0 0 0" }}>
           <div className="container">
-            <div className="row">
-              <div className="col-lg-7">
-                <p className="copyright__text text-white">
-                  Copyright &copy;{typeof window !== 'undefined' ? new Date().getFullYear() : '2024'} All rights reserved | This template is made with <i className="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" rel="noopener noreferrer">Colorlib</a>
+            <div className="row" style={{ display: "flex", alignItems: "center" }}>
+              <div className="col-lg-7" style={{ color: "#fff", fontSize: "1rem" }}>
+                <p className="copyright__text text-white" style={{ margin: 0 }}>
+                  &copy; {typeof window !== 'undefined' ? new Date().getFullYear() : '2025'} Serle&apos;s Bake
                 </p>
               </div>
               <div className="col-lg-5">
                 <div className="copyright__widget">
-                  <ul>
-                    <li><Link href="/privacy-policy">Privacy Policy</Link></li>
-                    <li><Link href="/terms-conditions">Terms & Conditions</Link></li>
-                    <li><Link href="/site-map">Site Map</Link></li>
+                  <ul style={{ display: "flex", gap: 16, listStyle: "none", padding: 0, margin: 0 }}>
+                    <li><Link href="/privacy-policy" style={{ color: "#ffb6c1" }}>Privacy Policy</Link></li>
+                    <li><Link href="/terms-conditions" style={{ color: "#ffb6c1" }}>Terms &amp; Conditions</Link></li>
+                    <li><Link href="/site-map" style={{ color: "#ffb6c1" }}>Site Map</Link></li>
                   </ul>
                 </div>
               </div>
@@ -68,8 +293,6 @@ export default function Footer() {
           </div>
         </div>
       </footer>
-      {/* Footer Section End */}
-
       {/* Search Begin */}
       <div className="search-model">
         <div className="h-100 d-flex align-items-center justify-content-center">
@@ -82,4 +305,4 @@ export default function Footer() {
       {/* Search End */}
     </>
   );
-} 
+}

@@ -20,12 +20,13 @@ export default async function Bestselling() {
     <section className="product spad">
       <div className="container">
         <div className="d-flex justify-content-between align-items-center mb-4">
-          <h2 className="h2 text-left">Bestselling Cakes</h2>
-          <Link href={`/cakes?is_best_seller=true`} className="btn btn-primary">View All</Link>
+          <h2 className="h1 text-left">Bestselling Cakes</h2>
+          <Link href={`/cakes?is_best_seller=true`} className="btn bg-primary-light">View All</Link>
         </div>
         <div className="row">
           {products.slice(0, 4).map((product) => (
             <div className="col-lg-3 col-md-6 col-sm-6" key={product.id}>
+                <Link href={`/cakes/${product.category?.slug}/${product.slug}`}>  
               <div className="product__item">
                 <div className="product__item__pic set-bg border-r" style={{ backgroundImage: `url(${product.featured_image?.url || '/img/shop/product-1.jpg'})` }}>
                   <div className="product__label">
@@ -34,16 +35,17 @@ export default async function Bestselling() {
                 </div>
                 <div className="product__item__text">
                   <p className='p '>
-                    <Link href={`/product/${product.slug}`} className='p'>
+                    <span className='p text-decoration-none text-black'>
                       {product.name}
-                    </Link>
+                    </span>
                   </p>
                   <p className="product__item__price">{product.price_range}</p>
                   <div className="cart_add">
-                    <Link href={`/product/${product.slug}`}>View Details</Link>
+                    <p>View Details</p>
                   </div>
                 </div>
               </div>
+              </Link>
             </div>
           ))}
         </div>

@@ -1,0 +1,55 @@
+// Import variables
+@import '../../styles/variables';
+
+.customButton {
+  border-radius: $button-border-radius;
+  font-weight: $button-font-weight;
+  font-size: $button-font-size;
+  padding: $button-padding-y $button-padding-x;
+  border: $button-border-width solid;
+  transition: all $button-transition;
+  cursor: pointer;
+  font-family: $font-family;
+
+  &:hover {
+    transform: $button-hover-transform;
+    box-shadow: $button-hover-shadow;
+  }
+
+  // Primary variant - solid primary color button
+  &.btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: white;
+
+    &:hover {
+      background-color: $primary-color-light;
+      border-color: $primary-color-light;
+    }
+  }
+
+  // Secondary variant - white button with primary border
+  &.btn-secondary {
+    background-color: white;
+    border-color: $primary-color;
+    color: $primary-color;
+
+    &:hover {
+      background-color: $gray-color;
+      border-color: $primary-color-light;
+      color: $primary-color-light;
+    }
+  }
+
+  // Danger variant
+  &.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+
+    &:hover {
+      background-color: #c82333;
+      border-color: #c82333;
+    }
+  }
+} 
