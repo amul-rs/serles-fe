@@ -1,205 +1,166 @@
-# Cake Shop - Next.js Application
+# Serles Bake - Custom Cake Shop Website
 
-A modern, responsive cake shop website built with Next.js, featuring a beautiful design inspired by the provided HTML template.
+A modern, responsive website for Serles Bake, a custom cake shop in Tenkasi, Tamil Nadu. Built with Next.js 15 and React.
 
-## Features
+## 🎂 Features
 
-- **Responsive Design**: Mobile-first approach with Bootstrap integration
-- **Modern UI**: Beautiful gradient backgrounds and smooth animations
-- **Product Catalog**: Dynamic product listing with search and filtering
-- **Header & Footer**: Professional navigation and footer sections
-- **API Integration**: Ready for backend integration with product data
+- **Responsive Design**: Mobile-first approach with Bootstrap
+- **Product Catalog**: Dynamic cake categories and products
+- **Contact Integration**: WhatsApp, phone, and email integration
+- **SEO Optimized**: XML sitemap, robots.txt, and meta tags
+- **Modern UI**: Gradient designs and smooth animations
+- **Performance**: Optimized images and fast loading
 
-## Project Structure
- 
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 15
+- **Language**: JavaScript (ES6+)
+- **Styling**: Bootstrap 5 + Custom CSS
+- **Icons**: React Icons (Font Awesome)
+- **Deployment**: Vercel
+
+## 📁 Project Structure
+
 ```
 app/
-├── app/
-│   ├── components/
-│   │   ├── Header.js          # Header component with navigation
-│   │   ├── Footer.js          # Footer component
-│   │   └── ProductCard.js     # Individual product card component
-│   ├── config/
-│   │   └── api.js             # API configuration
-│   ├── shop/
-│   │   └── page.js            # Shop page with product listing
-│   ├── api/
-│   │   └── products/
-│   │       └── route.js       # API endpoint for products
-│   ├── layout.js              # Root layout with Header/Footer
-│   ├── page.js                # Home page
-│   └── globals.css            # Global styles
-├── public/                    # Static assets
-├── .env.local                 # Environment variables (create this)
-└── package.json
+├── app/                    # Next.js app directory
+│   ├── components/         # Reusable components
+│   ├── cakes/             # Product pages
+│   ├── contact/           # Contact page
+│   ├── privacy-policy/    # Legal pages
+│   ├── terms-conditions/  # Legal pages
+│   ├── site-map/          # Site map page
+│   ├── sitemap.xml/       # XML sitemap route
+│   ├── robots.txt/        # Robots.txt route
+│   └── layout.js          # Root layout
+├── public/                # Static assets
+├── package.json           # Dependencies
+├── next.config.mjs        # Next.js config
+├── vercel.json           # Vercel deployment config
+└── README.md             # This file
 ```
 
-## Getting Started
+## 🛠️ Installation
 
-### Prerequisites
-
-- Node.js (version 18 or higher)
-- npm or yarn
-
-### Installation
-
-1. Navigate to the app directory:
+1. **Clone the repository**
    ```bash
-   cd app
+   git clone <repository-url>
+   cd serles-fe
    ```
 
-2. Install dependencies:
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. Create environment configuration:
+3. **Run development server**
    ```bash
-   # Create .env.local file
-   echo "NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000" > .env.local
-   echo "NEXT_PUBLIC_API_ENDPOINT=/api/products/?format=json" >> .env.local
+   npm run dev
    ```
 
-4. Run the development server:
+4. **Open in browser**
+   ```
+   http://localhost:3000
+   ```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. **Connect to Vercel**
+   - Push code to GitHub
+   - Connect repository in Vercel dashboard
+   - Deploy automatically
+
+2. **Environment Variables** (if needed)
+   ```env
+   NEXT_PUBLIC_API_URL=https://your-api-domain.com
+   ```
+
+3. **Custom Domain**
+   - Add `serlesbake.in` in Vercel dashboard
+   - Update DNS records
+
+### Manual Build
+
 ```bash
-npm run dev
+npm run build
+npm start
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+## 📱 Pages
 
-## Pages
+- **Home** (`/`) - Landing page with menu and promotions
+- **Cakes** (`/cakes`) - All products listing
+- **Categories** (`/cakes/[category]`) - Category-specific products
+- **Product Details** (`/cakes/[category]/[product]`) - Individual product pages
+- **Contact** (`/contact`) - Contact information and social links
+- **Legal Pages** - Privacy Policy, Terms & Conditions
+- **Site Map** (`/site-map`) - Visual site navigation
 
-### Home Page (`/`)
-- Hero section with call-to-action
-- Feature highlights
-- Links to shop page
-
-### Shop Page (`/shop`)
-- Product grid layout
-- Search functionality
-- Category filtering
-- Product cards with images and prices
-
-## API Integration
-
-The application is configured to fetch products from an external API endpoint. The API configuration is managed through environment variables:
-
-### Environment Configuration
-
-Create a `.env.local` file in the root directory with the following variables:
-
-```env
-NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
-NEXT_PUBLIC_API_ENDPOINT=/api/products/?format=json
-```
+## 🔧 Configuration
 
 ### API Configuration
+Update API endpoints in `app/config/api.js`:
+```javascript
+export const API_BASE_URL = 'https://your-api-domain.com/api';
+```
 
-The application uses the API configuration from `app/config/api.js`:
-
-- **Base URL**: Points to your backend server
-- **Products Endpoint**: The specific endpoint for fetching products
-- **Format**: JSON format for API responses
-
-### API Response Format
-
-Your API should return data in the following format:
-
-```json
-{
-  "count": 2,
-  "next": null,
-  "previous": null,
-  "results": [
-    {
-      "id": 1,
-      "name": "Product Name",
-      "slug": "product-slug",
-      "sku": "SKU123",
-      "category": {
-        "id": 1,
-        "name": "Category Name",
-        "slug": "category-slug"
-      },
-      "short_description": "Product description",
-      "price_range": "$10.00 - $20.00",
-      "featured_image": {
-        "url": "http://example.com/image.jpg",
-        "alt_text": "Image description"
-      },
-      "tags_list": ["Tag1", "Tag2"]
-    }
-  ]
+### Image Domains
+Update allowed image domains in `next.config.mjs`:
+```javascript
+images: {
+  domains: ['your-domain.com', 'cdn-domain.com']
 }
 ```
 
-## Styling
+## 📊 SEO Features
 
-The application uses:
-- **Bootstrap 5**: For responsive grid and components
-- **Font Awesome**: For icons
-- **Google Fonts**: Playfair Display and Montserrat
-- **Custom CSS**: Comprehensive styling matching the original template
+- **XML Sitemap**: `/sitemap.xml`
+- **Robots.txt**: `/robots.txt`
+- **Meta Tags**: Dynamic meta information
+- **Structured Data**: Product schema markup
+- **Performance**: Optimized loading and caching
 
-## Key Components
+## 🎨 Customization
 
-### Header Component
-- Sticky navigation
-- Mobile-responsive menu
-- Search, cart, and user account links
-- Dropdown navigation
+### Colors
+Primary brand colors in `app/styles/_variables.scss`:
+```scss
+$primary-color: #e4718a;
+$secondary-color: #f8a6b6;
+$dark-color: #231f20;
+```
 
-### Footer Component
-- Working hours
-- Social media links
-- Newsletter subscription
-- Copyright information
+### Styling
+- **Bootstrap**: Main framework
+- **Custom CSS**: Component-specific styles
+- **SCSS**: Variables and mixins
+- **Inline Styles**: Dynamic styling
 
-### ProductCard Component
-- Product image display
-- Product information
-- Add to cart functionality
-- Category labels
+## 📞 Contact Information
 
-## Customization
+- **Phone**: +91 63830 70725
+- **Email**: serlesbake@gmail.com
+- **Address**: Tenkasi - Sengottai Main Road, Ilanji, Tenkasi, Tamil Nadu
+- **Website**: serlesbake.in
 
-### Adding New Products
-1. Update the API endpoint or mock data
-2. Ensure product images are available
-3. Product data should include: name, slug, price_range, featured_image, category, etc.
+## 🔗 Social Media
 
-### Styling Changes
-- Modify `app/globals.css` for global styles
-- Component-specific styles are included in the CSS file
-- Color scheme uses purple gradient (#667eea to #764ba2)
+- **Instagram**: @serles_bake
+- **Facebook**: Serle's Bake
+- **WhatsApp**: +91 63830 70725
 
-### Adding New Pages
-1. Create new page files in the `app` directory
-2. Update navigation in `Header.js`
-3. Add any necessary styling
+## 📄 License
 
-## Deployment
+This project is proprietary to Serles Bake.
 
-The application is ready for deployment on platforms like:
-- Vercel (recommended for Next.js)
-- Netlify
-- AWS Amplify
+## 🤝 Support
 
-## Browser Support
+For technical support or questions:
+- Email: serlesbake@gmail.com
+- Phone: +91 63830 70725
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+---
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is open source and available under the MIT License.
+**Built with ❤️ for Serles Bake**
