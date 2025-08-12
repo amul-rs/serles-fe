@@ -67,9 +67,25 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#b61123" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
-          
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+        
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXF11QPRMS"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-PXF11QPRMS', {
+                page_path: window.location.pathname,
+                anonymize_ip: true
+              });
+            `
+          }}
+        />
+        
         {/* Template CSS Files */}
         <link rel="stylesheet" href="/css/style.css" />
         <link rel="stylesheet" href="/css/flaticon.css" />
