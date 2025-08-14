@@ -208,7 +208,7 @@ export default function ContactPage() {
               iconBg="rgba(255,255,255,0.25)"
             >
               <div style={{ fontSize: "0.95rem" }}>
-                +91 63830 70722
+                +91 63830 70725
               </div>
             </ContactCard>
           </div>
