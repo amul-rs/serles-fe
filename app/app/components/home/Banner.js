@@ -1,11 +1,15 @@
 'use client';
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import { getBannersUrl } from "../../config/api";
 
 export default function Banner() {
   const [banners, setBanners] = useState([]);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,29 +29,6 @@ export default function Banner() {
 
     fetchBanners();
   }, []);
-
-  // Auto-advance slides
-  useEffect(() => {
-    if (banners.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % banners.length);
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [banners.length]);
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
-
-  const goToPrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + banners.length) % banners.length);
-  };
-
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % banners.length);
-  };
 
   if (loading) {
     return (
@@ -92,165 +73,91 @@ export default function Banner() {
   return (
     <section className="container pt-0">
       <div style={{ 
-        position: "relative", 
         borderRadius: "12px", 
         overflow: "hidden",
         boxShadow: "0 4px 20px rgba(0,0,0,0.1)"
       }}>
-        {/* Carousel Container */}
-        <div style={{ 
-          position: "relative", 
-          height: 400, 
-          overflow: "hidden"
-        }}>
-          {banners.map((banner, index) => (
-            <Link href={banner.link || "/"} key={banner.id}>
-            <div 
-              key={banner.id}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                backgroundImage: `url(${banner.image || "/img/shop/product-1.jpg"})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                opacity: index === currentSlide ? 1 : 0,
-                transition: "opacity 0.5s ease-in-out",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              {/* Overlay for better text readability */}
-              {/* <div style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroudn: "rgba(0,0,0,0.3)"
-              }}></div> */}
-              
-              {/* Content */}
-              <div className="text-center text-white" style={{ position: "relative", zIndex: 2 }}>
-                {/* {banner.title && (
-                  <h2 style={{ 
-                    fontSize: "2.5rem", 
-                    fontWeight: "700", 
-                    marginBottom: "1rem",
-                    textShadow: "2px 2px 4px rgba(0,0,0,0.5)"
-                  }}>
-                    {banner.title}
-                  </h2>
-                )} */}
-              
-              </div>
-            </div>
-            </Link>
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            }
+          }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+            el: '.swiper-pagination-custom',
+          }}
+          loop={banners.length > 1}
+        
+        >
+          {banners.map((banner) => (
+            <SwiperSlide key={banner.id}>
+              <Link href={banner.link || "/"} style={{ display: 'block', height: '100%' }}>
+                <div 
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundImage: `url(${banner.image || "/img/shop/product-1.jpg"})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "relative"
+                  }}
+                >
+                
+                  
+                 
+                </div>
+              </Link>
+            </SwiperSlide>
           ))}
-        </div>
-
-        {/* Indicators */}
-        {banners.length > 1 && (
-          <div style={{
-            position: "absolute",
-            bottom: "20px",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: "8px",
-            zIndex: 3
-          }}>
-            {banners.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                style={{
-                  width: "12px",
-                  height: "12px",
-                  borderRadius: "50%",
-                  border: "none",
-                  background: index === currentSlide ? "#e4718a" : "rgba(255,255,255,0.5)",
-                  cursor: "pointer",
-                  transition: "all 0.3s ease"
-                }}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Navigation Arrows */}
-        {banners.length > 1 && (
-          <>
-            <button
-              onClick={goToPrevious}
-              style={{
-                position: "absolute",
-                left: "20px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                background: "rgba(255,255,255,0.8)",
-                border: "none",
-                borderRadius: "50%",
-                width: "50px",
-                height: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                zIndex: 3,
-                transition: "all 0.3s ease"
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = "rgba(255,255,255,1)";
-                e.target.style.transform = "translateY(-50%) scale(1.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = "rgba(255,255,255,0.8)";
-                e.target.style.transform = "translateY(-50%) scale(1)";
-              }}
-              aria-label="Previous slide"
-            >
-              <span style={{ fontSize: "1.5rem", color: "#333" }}>‹</span>
-            </button>
-            
-            <button
-              onClick={goToNext}
-              style={{
-                position: "absolute",
-                right: "20px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                background: "rgba(255,255,255,0.8)",
-                border: "none",
-                borderRadius: "50%",
-                width: "50px",
-                height: "50px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                zIndex: 3,
-                transition: "all 0.3s ease"
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = "rgba(255,255,255,1)";
-                e.target.style.transform = "translateY(-50%) scale(1.1)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = "rgba(255,255,255,0.8)";
-                e.target.style.transform = "translateY(-50%) scale(1)";
-              }}
-              aria-label="Next slide"
-            >
-              <span style={{ fontSize: "1.5rem", color: "#333" }}>›</span>
-            </button>
-          </>
-        )}
+        </Swiper>
+        
+        {/* Custom pagination below the slider */}
+        <div className="swiper-pagination-custom" style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '8px',
+          marginTop: '15px',
+          padding: '0 20px',
+          margin: 'auto',
+        }}></div>
       </div>
+
+      <style jsx global>{`
+        .swiper {
+          height: 180px;
+        }
+        
+        @media (min-width: 768px) {
+          .swiper {
+            height: 250px;
+          }
+        }
+        
+        .swiper-pagination-bullet {
+          background: rgba(255,255,255,0.5);
+          opacity: 1;
+        }
+        
+        .swiper-pagination-bullet-active {
+          background: #e4718a;
+        }
+        
+
+      `}</style>
     </section>
   );
 }

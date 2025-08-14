@@ -32,9 +32,9 @@ export default function ProductDetailPageClient({ params }) {
       try {
         setLoading(true);
         
-        // Use cached API calls
+        // Use cached API calls with pagination to get more products
         const [productsData, categoriesData] = await Promise.all([
-          apiCache.fetchWithCache(getProductsUrl()),
+          apiCache.fetchWithCache(getProductsUrl(1, 50)), // Load more products for better related products
           apiCache.fetchWithCache(getCategoriesUrl())
         ]);
 
@@ -56,7 +56,7 @@ export default function ProductDetailPageClient({ params }) {
         // Get related products (same category, different products)
         const related = allProducts.filter(p => 
           p.category?.slug === categorySlug && p.id !== foundProductFromList.id
-        ).slice(0, 4);
+        ).slice(0, 8); // Show more related products
 
         setProduct(individualProductData);
         setCategories(allCategories);
@@ -663,7 +663,7 @@ Please contact me for more details. Thank you!`;
                   </div>
 
                   {/* Reviews Accordion */}
-                  <div className="accordion-item">
+                  {/* <div className="accordion-item">
                     <button 
                       className={`accordion-header ${activeAccordion === 'reviews' ? 'active' : ''}`}
                       onClick={() => handleAccordionChange('reviews')}
@@ -699,7 +699,7 @@ Please contact me for more details. Thank you!`;
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

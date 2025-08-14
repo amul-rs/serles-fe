@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { forwardRef } from "react";
 
-export default function ProductCard({ product }) {
+const ProductCard = forwardRef(({ product, isLast = false }, ref) => {
   return (
-    <div className="col-lg-3 col-md-6 col-sm-6">
+    <div className="col-lg-4 col-md-6 col-sm-6" ref={isLast ? ref : null}>
       <Link 
         href={`/cakes/${product.category?.slug}/${product.slug}`}
         className="text-decoration-none"
@@ -39,4 +40,8 @@ export default function ProductCard({ product }) {
       </Link>
     </div>
   );
-} 
+});
+
+ProductCard.displayName = 'ProductCard';
+
+export default ProductCard; 
