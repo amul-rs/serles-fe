@@ -54,7 +54,7 @@ export default function Header() {
                     </Link>
                   <Link href="tel:+916383070725" className="text-primary-light text-decoration-none d-none d-lg-block">
                     <i className="bi bi-telephone text-primary-light d-inline-flex align-items-center justify-content-center gap-3 h-100 ">
-                      <FaPhone  size={36}  style={{transform: 'rotate(90deg)'}}/> <p className='d-flex flex-column mb-0 h6 '>Call Us <span className="text-color">+91 63830 70722</span></p>
+                      <FaPhone  size={36}  style={{transform: 'rotate(90deg)'}}/> <p className='d-flex flex-column mb-0 h6 '>Call Us <span className="text-color">+91 63830 70725</span></p>
                     </i>
                   </Link>
                   </div>
