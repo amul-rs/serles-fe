@@ -173,18 +173,20 @@
     /*------------------
         Barfiller
     --------------------*/
-    $('#bar1').barfiller({
-        barColor: '#111111',
-        duration: 2000
-    });
-    $('#bar2').barfiller({
-        barColor: '#111111',
-        duration: 2000
-    });
-    $('#bar3').barfiller({
-        barColor: '#111111',
-        duration: 2000
-    });
+    if (typeof $.fn.barfiller !== 'undefined') {
+        $('#bar1').barfiller({
+            barColor: '#111111',
+            duration: 2000
+        });
+        $('#bar2').barfiller({
+            barColor: '#111111',
+            duration: 2000
+        });
+        $('#bar3').barfiller({
+            barColor: '#111111',
+            duration: 2000
+        });
+    }
 
 
     /*------------------

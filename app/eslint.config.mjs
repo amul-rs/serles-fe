@@ -2,6 +2,7 @@ import { FlatCompat } from '@eslint/eslintrc'
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
+  recommendedConfig: { ...require('eslint-config-next') },
 })
 
 const eslintConfig = [
@@ -12,6 +13,15 @@ const eslintConfig = [
       '@next/next/no-page-custom-font': 'off',
     },
   }),
+  {
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      'dist/**',
+      'build/**',
+    ],
+  },
 ]
 
 export default eslintConfig

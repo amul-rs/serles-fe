@@ -334,7 +334,10 @@ export default function Menu() {
                   <div style={{ display: "flex", gap: "8px", flexDirection: "row" }}>
                     {/* View Details Button */}
                     <Link
-                      href={`/cakes/${product?.category?.slug || 'cakes'}/${product?.slug || 'product'}`}
+                      href={product?.category?.slug && product?.slug 
+                        ? `/cakes/${product.category.slug}/${product.slug}`
+                        : '/cakes'
+                      }
                       style={{
                         background: "#e4718a",
                         color: "#fff",

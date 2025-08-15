@@ -62,7 +62,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="/serlesfavicon.ico" />
-        {/* <link rel="manifest" href="/site.webmanifest" /> */}
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="google-site-verification" content="WAogh12govTmEEog4Dqeoj5kzeCMJrW4pDF2s_cY14A" />
         <meta name="theme-color" content="#b61123" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -112,16 +113,16 @@ export default function RootLayout({ children }) {
         {/* Debug Info - Only in development */}
         <DebugInfo />
 
-        {/* Scripts - Loaded asynchronously */}
-        <script src="/js/jquery-3.3.1.min.js" async></script>
-        <script src="/js/bootstrap.min.js" async></script>
-        <script src="/js/jquery.magnific-popup.min.js" async></script>
-        <script src="/js/jquery.nice-select.min.js" async></script>
-        <script src="/js/jquery.slicknav.js" async></script>
-        <script src="/js/owl.carousel.min.js" async></script>
-        <script src="/js/jquery.barfiller.js" async></script>
-        <script src="/js/jquery.nicescroll.min.js" async></script>
-        <script src="/js/main.js" async></script>
+        {/* Scripts - Loaded in correct order */}
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/jquery.magnific-popup.min.js"></script>
+        <script src="/js/jquery.nice-select.min.js"></script>
+        <script src="/js/jquery.slicknav.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/jquery.barfiller.js"></script>
+        <script src="/js/jquery.nicescroll.min.js"></script>
+        <script src="/js/main.js"></script>
         
         {/* Preloader Script */}
         <script dangerouslySetInnerHTML={{

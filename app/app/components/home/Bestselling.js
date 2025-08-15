@@ -122,7 +122,10 @@ export default function Bestselling({ initialProducts = [] }) {
 
     return (
       <div className="col-lg-3 col-6" key={product.id}>
-        <Link href={`/cakes/${product.category?.slug}/${product.slug}`}>  
+        <Link href={product.category?.slug && product.slug 
+          ? `/cakes/${product.category.slug}/${product.slug}`
+          : '/cakes'
+        }>  
           <div className={`product__item ${styles.productItem}`}>
             <div className="product__item__pic set-bg border-r">
               <Image

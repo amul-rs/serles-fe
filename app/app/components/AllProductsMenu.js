@@ -437,7 +437,10 @@ export default function AllProductsMenu() {
                   <div style={{ display: "flex", gap: "8px", flexDirection: "column" }}>
                     {/* View Details Button */}
                     <Link
-                      href={`/cakes/${items[0]?.category?.slug || 'cakes'}/${items[0]?.slug || 'product'}`}
+                      href={items[0]?.category?.slug && items[0]?.slug 
+                        ? `/cakes/${items[0].category.slug}/${items[0].slug}`
+                        : '/cakes'
+                      }
                       style={{
                         background: "#e4718a",
                         color: "#fff",
