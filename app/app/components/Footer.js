@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaWhatsapp, FaGoogle } from 'react-icons/fa';
 
 const contactInfo = [
   {
@@ -35,16 +35,24 @@ const socialLinks = [
   },
   {
     icon: "fa-whatsapp",
-    href: "https://wa.me/916383070725",
+    href: "https://wa.me/916383070725?text=Hi!%20I'm%20interested%20in%20ordering%20the%20cakes",
     color: "#25d366",
     label: "FaWhatsapp",
   },
 ];
 
+// Updated working hours: single line for all days, and home delivery mention
 const workingHours = [
-  { day: "Monday - Friday", time: "08:00 am – 08:30 pm" },
-  { day: "Saturday", time: "10:00 am – 04:30 pm" },
-  { day: "Sunday", time: "10:00 am – 04:30 pm" },
+  { day: "Monday - Sunday", time: "7:00 am – 11:00 pm" },
+  { day: "Home Delivery", time: "Available" },
+];
+
+const quickLinks = [
+  { label: "Cakes", href: "/cakes" },
+  { label: "Menu & Pricing", href: "/menu" },
+  // { label: "Cake Categories", href: "/cakes/category" },
+  { label: "WhatsApp Enquiry", href: "https://wa.me/916383070725?text=Hi!%20I'm%20interested%20in%20ordering%20the%20cakes", external: true, icon: <FaWhatsapp style={{ marginRight: 6, color: "#25d366" }} /> },
+  { label: "Google Reviews", href: "https://share.google.com/r/638kqV60of9pEzAv", external: true, icon: <FaGoogle style={{ marginRight: 6, color: "#ea4335" }} /> },
 ];
 
 function ContactList({ info }) {
@@ -114,7 +122,7 @@ function SocialIcons({ links }) {
           >
             <IconComponent size={20} />
           </a>
-                );
+        );
       })}
     </div>
   );
@@ -147,7 +155,78 @@ function WorkingHours({ hours }) {
       <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "1.05rem" }}>
         {hours.map((item, idx) => (
           <li key={idx} style={{ marginBottom: 10 }}>
-            <span style={{ fontWeight: 600 }}>{item.day}:</span> {item.time}
+            <span style={{ fontWeight: 600 }}>{item.day}:</span><br/> {item.time}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function QuickLinks({ links }) {
+  return (
+    <div
+      style={{
+        background: "#232025",
+        borderRadius: "6px",
+        padding: "32px 24px",
+        margin: "32px 0",
+        minWidth: "220px",
+        maxWidth: "320px",
+        width: "100%",
+        color: "#fff",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start"
+      }}
+    >
+      <h4
+        style={{
+          color: "#ffb6c1",
+          fontWeight: 700,
+          marginBottom: "18px",
+          letterSpacing: "1px",
+        }}
+      >
+        QUICK LINKS
+      </h4>
+      <ul style={{ listStyle: "none", padding: 0, margin: 0, fontSize: "1.05rem", width: "100%" }}>
+        {links.map((item, idx) => (
+          <li key={idx} style={{ marginBottom: 12 }}>
+            {item.external ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#fff",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  fontWeight: 500,
+                  transition: "color 0.2s",
+                }}
+              >
+                {item.icon} 
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                href={item.href}
+                style={{
+                  color: "#fff",
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  fontWeight: 500,
+                  transition: "color 0.2s",
+                }}
+              >
+                {item.icon}
+                {item.label}
+              </Link>
+            )}
           </li>
         ))}
       </ul>
@@ -180,7 +259,7 @@ export default function Footer() {
           >
             {/* Left: About */}
             <div
-              className="col-lg-6 col-md-12"
+              className="col-lg-4 col-md-12"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -227,9 +306,9 @@ export default function Footer() {
                 </p>
               </div>
             </div>
-            {/* Right: Get In Touch & Working Hours */}
+            {/* Middle: Quick Links */}
             <div
-              className="col-lg-6 col-md-12"
+              className="col-lg-3 col-md-12"
               style={{
                 display: "flex",
                 flexDirection: "row",
@@ -242,16 +321,31 @@ export default function Footer() {
                 gap: "0 16px",
               }}
             >
+              <QuickLinks links={quickLinks} />
+            </div>
+            {/* Right: Get In Touch & Working Hours */}
+            <div
+              className="col-lg-5 col-md-12"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                alignItems: "center",
+                background: "#18171c",
+                minHeight: "340px",
+                padding: 0,
+                gap: "16px",
+              }}
+            >
+              <WorkingHours hours={workingHours} />
+
               <div
                 style={{
                   flex: "1 1 220px",
-                  minWidth: "220px",
-                  maxWidth: "320px",
                   padding: "36px 24px 24px 24px",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
                 }}
               >
                 <h4
@@ -267,7 +361,6 @@ export default function Footer() {
                 <ContactList info={contactInfo} />
                 <SocialIcons links={socialLinks} />
               </div>
-              <WorkingHours hours={workingHours} />
             </div>
           </div>
         </div>

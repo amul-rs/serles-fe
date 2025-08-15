@@ -3410,7 +3410,7 @@ ol {
     width: 300px;
     height: 100%;
     background: #ffffff;
-    padding: 50px 0px 30px 0px;
+    padding: 30px 0px 30px 0px;
     display: block;
     z-index: 99;
     overflow-y: auto;
@@ -3423,10 +3423,107 @@ ol {
   .offcanvas-menu-wrapper.active {
     opacity: 1;
     left: 0;
+    z-index: 1002 !important;
   }
 
   .offcanvas__menu {
     display: none;
+  }
+
+  /* Close button for offcanvas menu */
+  .offcanvas__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background: #e4718a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+  }
+
+  .offcanvas__close:hover {
+    background: #8f0e1c;
+    transform: scale(1.1);
+  }
+
+  .offcanvas__close i {
+    color: #fff;
+    font-size: 14px;
+  }
+
+  /* Mobile menu styles - matching desktop design */
+  .offcanvas-menu-wrapper .mobile-menu {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .offcanvas-menu-wrapper .mobile-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .offcanvas-menu-wrapper .mobile-menu ul li {
+    list-style: none;
+    display: block;
+    position: relative;
+    margin-bottom: 5px;
+  }
+
+  .offcanvas-menu-wrapper .mobile-menu ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  .offcanvas-menu-wrapper .mobile-menu ul li a {
+    font-size: 14px;
+    color: #ffffff;
+    display: block;
+    padding: 10px 25px;
+    letter-spacing: 1px;
+    -webkit-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
+    text-decoration: none;
+    background: #111111;
+    margin: 0 10px;
+    border-radius: 4px;
+  }
+
+  .offcanvas-menu-wrapper .mobile-menu ul li a:hover,
+  .offcanvas-menu-wrapper .mobile-menu ul li.active a {
+    background: #e4718a;
+    color: #ffffff;
+  }
+
+  /* Contact info in mobile menu */
+  .offcanvas__contact-info {
+    margin-top: 30px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .offcanvas__contact-info a {
+    padding: 8px 0;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    color: #231f20;
+    font-weight: 500;
+  }
+
+  .offcanvas__contact-info a:hover {
+    color: #e4718a !important;
+  }
+
+  .offcanvas__contact-info .text-primary {
+    color: #e4718a !important;
   }
 
   .slicknav_btn {

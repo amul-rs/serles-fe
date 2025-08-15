@@ -13,26 +13,44 @@ export default function Header() {
       {/* Offcanvas Menu Begin */}
       <div className={`offcanvas-menu-overlay ${isMenuOpen ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}></div>
       <div className={`offcanvas-menu-wrapper ${isMenuOpen ? 'active' : ''}`}>
-        <div className="offcanvas__cart">
-          <div className="offcanvas__cart__links">
-            <a href="#" className="search-switch">
-              <Image src="/img/icon/search.png" alt="Search" width={20} height={20} />
-            </a>
-            <a href="#">
-              <Image src="/img/icon/heart.png" alt="Wishlist" width={20} height={20} />
-            </a>
-          </div>
-          <div className="offcanvas__cart__item">
-            <a href="#">
-              <Image src="/img/icon/cart.png" alt="Cart" width={20} height={20} />
-              <span>0</span>
-            </a>
-            <div className="cart__price">Cart: <span>$0.00</span></div>
-          </div>
+        {/* Close Button */}
+        <div className="offcanvas__close" onClick={() => setIsMenuOpen(false)}>
+          <i className="fa fa-times"></i>
         </div>
         
-        <div id="mobile-menu-wrap"></div>
-     
+        {/* Logo Section */}
+        <div className='d-flex align-items-center justify-content-start gap-3 p-3'>
+          <Image src="/img/serlesbakelogo.webp" alt="Logo" width={60} height={60} />
+          <p className='text-black h6 mb-0'>Serles Bake</p>
+        </div>
+        
+        {/* Mobile Navigation Menu */}
+        <div >
+          <nav className="mobile-menu">
+            <ul>
+              <li><Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
+              <li><Link href="/about" onClick={() => setIsMenuOpen(false)}>About</Link></li>
+              <li><Link href="/cakes" onClick={() => setIsMenuOpen(false)}>Shop</Link></li>
+              <li><Link href="/menu" onClick={() => setIsMenuOpen(false)}>Menu & Pricing</Link></li>
+              <li><Link href="/testimonial" onClick={() => setIsMenuOpen(false)}>Testimonials</Link></li>
+              <li><Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
+            </ul>
+          </nav>
+        </div>
+        
+        {/* Contact Info in Mobile Menu */}
+        <div className="offcanvas__contact-info p-3">
+          <div className="d-flex flex-column gap-3">
+            <Link href="mailto:serlesbake@gmail.com" className="text-decoration-none d-flex align-items-center gap-2">
+              <FaEnvelope size={20} className="text-primary" />
+              <span className="text-dark">serlesbake@gmail.com</span>
+            </Link>
+            <Link href="tel:+916383070725" className="text-decoration-none d-flex align-items-center gap-2">
+              <FaPhone size={20} className="text-primary" />
+              <span className="text-dark">+91 63830 70725</span>
+            </Link>
+          </div>
+        </div>
       </div>
       {/* Offcanvas Menu End */}
 

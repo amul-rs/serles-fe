@@ -311,7 +311,7 @@ export default function Menu() {
                               fontSize: "0.8rem",
                               fontWeight: "600"
                             }}>
-                                Starting from 500gms
+                                Starting from 1kg
                             </span>
                             
                             <span style={{
@@ -331,7 +331,7 @@ export default function Menu() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div style={{ display: "flex", gap: "8px", flexDirection: "column" }}>
+                  <div style={{ display: "flex", gap: "8px", flexDirection: "row" }}>
                     {/* View Details Button */}
                     <Link
                       href={`/cakes/${product?.category?.slug || 'cakes'}/${product?.slug || 'product'}`}
