@@ -88,6 +88,8 @@ export default function RootLayout({ children }) {
         
         {/* Template CSS Files */}
         <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/css/font-awesome.min.css" />
         <link rel="stylesheet" href="/css/flaticon.css" />
         <link rel="stylesheet" href="/css/barfiller.css" />
         <link rel="stylesheet" href="/css/magnific-popup.css" />
@@ -95,6 +97,43 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/nice-select.css" />
         <link rel="stylesheet" href="/css/owl.carousel.min.css" />
         <link rel="stylesheet" href="/css/slicknav.min.css" />
+        
+        {/* CSS Loading Fallback */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // CSS loading fallback
+            function loadCSS(href) {
+              return new Promise((resolve, reject) => {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                link.onload = () => resolve();
+                link.onerror = () => reject();
+                document.head.appendChild(link);
+              });
+            }
+            
+            // Check if critical CSS loaded
+            window.addEventListener('load', function() {
+              const styleSheets = Array.from(document.styleSheets);
+              const cssFiles = ['/css/style.css', '/css/bootstrap.min.css'];
+              
+              cssFiles.forEach(cssFile => {
+                const loaded = styleSheets.some(sheet => 
+                  sheet.href && sheet.href.includes(cssFile)
+                );
+                
+                if (!loaded) {
+                  console.warn('CSS file not loaded:', cssFile);
+                  // Try to reload
+                  loadCSS(cssFile).catch(err => {
+                    console.error('Failed to load CSS:', cssFile, err);
+                  });
+                }
+              });
+            });
+          `
+        }} />
       </head>
       <body className={inter.className}>
         {/* Page Preloder */}

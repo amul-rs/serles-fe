@@ -44,6 +44,20 @@ const nextConfig = {
     optimizeCss: true,
   },
   
+  // Static file serving
+  async rewrites() {
+    return [
+      {
+        source: '/css/:path*',
+        destination: '/css/:path*',
+      },
+      {
+        source: '/js/:path*',
+        destination: '/js/:path*',
+      },
+    ];
+  },
+  
   // Compression and optimization
   compress: true,
   poweredByHeader: false,
@@ -132,6 +146,34 @@ const nextConfig = {
       {
         source: '/img/(.*)',
         headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Add cache headers for CSS files
+      {
+        source: '/css/(.*)',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'text/css',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Add cache headers for JS files
+      {
+        source: '/js/(.*)',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/javascript',
+          },
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
