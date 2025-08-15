@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { FaEnvelope, FaPhone } from 'react-icons/fa';
+import Wabtn from './ui/wabtn';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -95,6 +96,7 @@ export default function Header() {
           </div>
         </div>
       </header>
+      <Wabtn />
       {/* Header Section End */}
     </>
   );

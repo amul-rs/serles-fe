@@ -9,10 +9,8 @@ export const API_CONFIG = {
   TAGS_ENDPOINT: '/api/tags/?format=json',
 };
 
-export const getProductsUrl = (page = 1, pageSize = 12) => {
-  const baseUrl = `${API_CONFIG.BASE_URL}${API_CONFIG.PRODUCTS_ENDPOINT}`;
-  const separator = baseUrl.includes('?') ? '&' : '?';
-  return `${baseUrl}${separator}page=${page}&page_size=${pageSize}`;
+export const getProductsUrl = (page = 1, pageSize = 100) => {
+  return `${API_CONFIG.BASE_URL}${API_CONFIG.PRODUCTS_ENDPOINT}&page=${page}&page_size=${pageSize}`;
 };
 
 export const getProductDetailUrl = (id) => {

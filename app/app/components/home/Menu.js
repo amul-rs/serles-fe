@@ -39,6 +39,7 @@ export default function Menu() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState(null);
+  const [displayLimit, setDisplayLimit] = useState(6); // Show only 6 products initially
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,12 +112,16 @@ export default function Menu() {
     ? products 
     : products.filter((p) => p.category?.slug === activeCategory);
 
-  // Group by name, so that each name has multiple variants (if any)
-  const grouped = {};
-  filteredProducts.forEach((item) => {
-    if (!grouped[item.name]) grouped[item.name] = [];
-    grouped[item.name].push(item);
-  });
+  // Get limited products for display (no grouping - each product is separate)
+  const displayProducts = filteredProducts.slice(0, displayLimit);
+  const hasMoreProducts = filteredProducts.length > displayLimit;
+
+  // Handle WhatsApp enquiry
+  const handleWhatsAppEnquiry = (productName, weightOption = null) => {
+    const message = `Hi! I'm interested in ordering the ${productName} cake.${weightOption ? `\n\nWeight: ${weightOption.display_name}\nPrice: ₹${weightOption.price}` : ''}\n\nPlease contact me for more details. Thank you!`;
+    const whatsappUrl = `https://wa.me/916383070725?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   // Debug: Log category mapping
   console.log('Active category:', activeCategory);
@@ -198,105 +203,104 @@ export default function Menu() {
             </div>
           </div>
         ) : (
-          <div className="menu-list">
-            {Object.keys(grouped).length === 0 && (
-              <div className="text-center py-5">
-                <div style={{
-                  background: "linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%)",
-                  padding: "40px",
-                  borderRadius: "20px",
-                  border: "2px dashed #e4718a"
-                }}>
-                  <h4 style={{ color: "#e4718a" }}>No items found in this category</h4>
-                  <p className="text-muted">Try selecting a different category or check back later!</p>
+          <>
+            <div className="menu-list">
+              {displayProducts.length === 0 && (
+                <div className="text-center py-5">
+                  <div style={{
+                    background: "linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%)",
+                    padding: "40px",
+                    borderRadius: "20px",
+                    border: "2px dashed #e4718a"
+                  }}>
+                    <h4 style={{ color: "#e4718a" }}>No items found in this category</h4>
+                    <p className="text-muted">Try selecting a different category or check back later!</p>
+                  </div>
                 </div>
-              </div>
-            )}
-            {Object.entries(grouped).map(([name, items], idx) => (
-                              <div 
-                  key={name + idx}
+              )}
+              {displayProducts.map((product, idx) => (
+                <div 
+                  key={product.id || product.name + idx}
                   className={styles.menuItem}
-                
-              >
-                                  {/* Product Image */}
+                >
+                  {/* Product Image */}
                   <div className={styles.menuItemImage}>
-                  {items[0]?.featured_image && items[0]?.featured_image.url ? (
-                    <img
-                      src={items[0].featured_image.url}
-                      alt={items[0].featured_image.alt_text || name}
-                      style={{
+                    {product?.featured_image && product?.featured_image.url ? (
+                      <img
+                        src={product.featured_image.url}
+                        alt={product.featured_image.alt_text || product.name}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover"
+                        }}
+                      />
+                    ) : (
+                      <div style={{
                         width: "100%",
                         height: "100%",
-                        objectFit: "cover"
-                      }}
-                    />
-                  ) : (
-                    <div style={{
-                      width: "100%",
-                      height: "100%",
-                      background: "#f8f9fa",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#e4718a"
-                    }}>
-                      <i className="fas fa-birthday-cake" style={{ fontSize: "1.5rem" }}></i>
-                    </div>
-                  )}
-                </div>
-
-                                  {/* Product Info */}
-                  <div className={styles.menuItemContent}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "5px" }}>
-                    <h5 style={{
-                      fontWeight: "700",
-                      fontSize: "1rem",
-                      color: "#231f20",
-                      margin: 0,
-                      flex: "1"
-                    }}>
-                      {name}
-                    </h5>
-                    {items[0]?.is_best_seller && (
-                      <span style={{
-                        background: "#e4718a",
-                        color: "#fff",
-                        padding: "2px 6px",
-                        borderRadius: "10px",
-                        fontSize: "0.65rem",
-                        fontWeight: "600"
+                        background: "#f8f9fa",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#e4718a"
                       }}>
-                        ⭐ Best
-                      </span>
+                        <i className="fas fa-birthday-cake" style={{ fontSize: "1.5rem" }}></i>
+                      </div>
                     )}
                   </div>
-                  
-                  <div className={styles.weightOptions}>
-                    {/* Weight and Price Options */}
-                    {items.length > 0 && (
+
+                  {/* Product Info */}
+                  <div className={styles.menuItemContent}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "5px" }}>
+                      <h5 style={{
+                        fontWeight: "700",
+                        fontSize: "1rem",
+                        color: "#231f20",
+                        margin: 0,
+                        flex: "1"
+                      }}>
+                        {product.name}
+                      </h5>
+                      {product?.is_best_seller && (
+                        <span style={{
+                          background: "#e4718a",
+                          color: "#fff",
+                          padding: "2px 6px",
+                          borderRadius: "10px",
+                          fontSize: "0.65rem",
+                          fontWeight: "600"
+                        }}>
+                          ⭐ Best
+                        </span>
+                      )}
+                    </div>
+                    
+                    <div className={styles.weightOptions}>
+                      {/* Weight and Price Options */}
                       <div className={styles.weightOptions}>
-                        {/* Show weight options if available */}
-                        {items[0]?.weight_options && items[0].weight_options.length > 0 ? (
-                          items[0].weight_options.map((weightOption, weightIdx) => (
+                        {/* Show weight options for this specific product */}
+                        {product?.weight_options && product.weight_options.length > 0 ? (
+                          product.weight_options.map((weightOption, weightIdx) => (
                             <div key={weightIdx} className={styles.weightOption}>
-                                                          <span style={{
-                              color: "#555",
-                              fontSize: "0.8rem",
-                              fontWeight: "600"
-                            }}>
-                              {weightOption.display_name || `${weightOption.weight || '500'}gms`}
-                            </span>
-                            
-                            <span style={{
-                              background: "#28a745",
-                              color: "#fff",
-                              padding: "2px 6px",
-                              borderRadius: "4px",
-                              fontSize: "0.75rem",
-                              fontWeight: "700"
-                            }}>
-                              ₹{weightOption.price || '599'}
-                            </span>
+                              <span style={{
+                                color: "#555",
+                                fontSize: "0.8rem",
+                                fontWeight: "600"
+                              }}>
+                                {weightOption.display_name || `${weightOption.weight || 'Enquire'}`}
+                              </span>
+                              
+                              <span style={{
+                                background: "#28a745",
+                                color: "#fff",
+                                padding: "2px 6px",
+                                borderRadius: "4px",
+                                fontSize: "0.75rem",
+                                fontWeight: "700"
+                              }}>
+                                ₹{weightOption.price || 'Enquire'}
+                              </span>
                             </div>
                           ))
                         ) : (
@@ -307,7 +311,7 @@ export default function Menu() {
                               fontSize: "0.8rem",
                               fontWeight: "600"
                             }}>
-                              Starting from 500gms
+                                Starting from 500gms
                             </span>
                             
                             <span style={{
@@ -318,29 +322,104 @@ export default function Menu() {
                               fontSize: "0.75rem",
                               fontWeight: "700"
                             }}>
-                              {items[0]?.price_range || '₹599'}
+                              {product?.price_range || 'Enquire'}
                             </span>
                           </div>
                         )}
                       </div>
-                    )}
+                    </div>
                   </div>
-                </div>
 
-                                    {/* Order Button */}
+                  {/* Action Buttons */}
+                  <div style={{ display: "flex", gap: "8px", flexDirection: "column" }}>
+                    {/* View Details Button */}
+                    <Link
+                      href={`/cakes/${product?.category?.slug || 'cakes'}/${product?.slug || 'product'}`}
+                      style={{
+                        background: "#e4718a",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "6px",
+                        padding: "8px 12px",
+                        fontSize: "0.8rem",
+                        fontWeight: "600",
+                        cursor: "pointer",
+                        textDecoration: "none",
+                        textAlign: "center",
+                        transition: "all 0.3s ease",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "4px"
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = "#8f0e1c";
+                        e.target.style.transform = "translateY(-1px)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = "#e4718a";
+                        e.target.style.transform = "translateY(0)";
+                      }}
+                    >
+                      <i className="fas fa-eye" style={{ fontSize: "0.7rem" }}></i>
+                      View
+                    </Link>
+
+                    {/* WhatsApp Order Button */}
                     <button
                       className={styles.orderButton}
-                  
-                  onClick={() => {
-                    window.location.href = `https://wa.me/916383070725?text=I'm interested in ordering the ${name} cake. Can you provide more details?`;
+                      onClick={() => {
+                        // Use the first weight option if available, otherwise null
+                        const weightOption = product?.weight_options?.[0] || null;
+                        handleWhatsAppEnquiry(product.name, weightOption);
+                      }}
+                    >
+                      <i className="fab fa-whatsapp" style={{ fontSize: "0.9rem" }}></i>
+                      Order
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+           
+
+            {/* Always show View All Products button if there are products */}
+            {displayProducts.length > 0 && (
+              <div className="text-center mt-4">
+                <Link
+                  href="/menu"
+                  style={{
+                    background: "linear-gradient(135deg, #e4718a, #ff91a4)",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: "50px",
+                    padding: "12px 30px",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    boxShadow: "0 4px 15px rgba(228, 113, 138, 0.3)",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = "translateY(-1px)";
+                    e.target.style.boxShadow = "0 6px 20px rgba(228, 113, 138, 0.4)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = "translateY(0)";
+                      e.target.style.boxShadow = "0 4px 15px rgba(228, 113, 138, 0.3)";
                   }}
                 >
-                  <i className="fab fa-whatsapp" style={{ fontSize: "0.9rem" }}></i>
-                  Order
-                </button>
+                  <span>Browse Complete Menu</span>
+                  <i className="fas fa-utensils"></i>
+                </Link>
               </div>
-            ))}
-          </div>
+            )}
+          </>
         )}
 
         {/* Promotional Section */}

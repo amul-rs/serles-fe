@@ -47,12 +47,8 @@ class APICache {
     const key = this.generateKey(url);
     const cached = this.get(key);
     
-    // For paginated requests, use shorter cache time
-    const isPaginated = url.includes('page=') || url.includes('page_size=');
-    const cacheTimeout = isPaginated ? 2 * 60 * 1000 : this.cacheTimeout; // 2 minutes for paginated, 5 minutes for others
-    
-    if (cached && Date.now() - cached.timestamp < cacheTimeout) {
-      return cached.data;
+    if (cached) {
+      return cached;
     }
 
     try {

@@ -25,7 +25,7 @@ export default async function Bestselling() {
         </div>
         <div className="row">
           {products.slice(0, 4).map((product) => (
-            <div className="col-lg-3 col-md-6 col-sm-6" key={product.id}>
+            <div className="col-lg-3 col-6" key={product.id}>
                 <Link href={`/cakes/${product.category?.slug}/${product.slug}`}>  
               <div className="product__item">
                 <div className="product__item__pic set-bg border-r" style={{ backgroundImage: `url(${product.featured_image?.url || '/img/shop/product-1.jpg'})` }}>

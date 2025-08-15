@@ -6,11 +6,13 @@
  justify-content: center;
  align-items: center;
  gap: 20px;
+ overflow: scroll;
 
  padding: 20px 0;
 
  @media (max-width: 768px) {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
  }
   .product_grid_item {
     text-align: center;
@@ -24,10 +26,13 @@
      }
     }
     img {
-      min-height: 200px;
-      max-height: 200px;
+      height: 200px;
       width: 100%;
       object-fit: cover;
       border-radius: 20px;
+      height: 100px;
+      @media (max-width: 768px) {
+        height:120px;
+      }
     }
 }}

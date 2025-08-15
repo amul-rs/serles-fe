@@ -32,9 +32,9 @@ export default function ProductDetailPageClient({ params }) {
       try {
         setLoading(true);
         
-        // Use cached API calls with pagination to get more products
+        // Use cached API calls
         const [productsData, categoriesData] = await Promise.all([
-          apiCache.fetchWithCache(getProductsUrl(1, 50)), // Load more products for better related products
+          apiCache.fetchWithCache(getProductsUrl()),
           apiCache.fetchWithCache(getCategoriesUrl())
         ]);
 
@@ -56,7 +56,7 @@ export default function ProductDetailPageClient({ params }) {
         // Get related products (same category, different products)
         const related = allProducts.filter(p => 
           p.category?.slug === categorySlug && p.id !== foundProductFromList.id
-        ).slice(0, 8); // Show more related products
+        ).slice(0, 4);
 
         setProduct(individualProductData);
         setCategories(allCategories);

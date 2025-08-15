@@ -1061,6 +1061,9 @@ ol {
   height: 270px;
   position: relative;
   background-position: center;
+  @media (max-width: 768px) {
+    height: 200px;
+  }
 }
 .product__item__pic .product__label {
   position: absolute;

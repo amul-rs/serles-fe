@@ -3,11 +3,11 @@ import { FaAward, FaBakery, FaHeart } from "react-icons/fa";
 
 export default function About() {
     return (
-        <section className="about spad" style={{ background: "#fff", padding: "60px 0" }}>
+        <section className="about spad" style={{ background: "#fff", padding: "50px 0" }}>
             <div className="container">
                 <div className="row align-items-center">
                     {/* Left: Cake Image */}
-                    <div className="col-lg-6 col-md-12 mb-4 mb-lg-0 d-flex justify-content-center">
+                    <div className="col-lg-6 col-md-12 mb-4 mb-lg-0 d-flex justify-content-center ">
                         <div style={{ maxWidth: 500, width: "100%" ,objectFit: "cover"}}>
                             <Image
                                 src="/img/home/cakeinhand.jpg"
@@ -15,6 +15,7 @@ export default function About() {
                                 width={400}
                                 height={300}
                                 style={{ borderRadius: "12px", objectFit: "cover", width: "100%", height: "auto" }}
+                                className="img-fluid"
                             />
                         </div>
                     </div>
