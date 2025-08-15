@@ -1,0 +1,38 @@
+.teamMemberImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.teamItem {
+  position: relative;
+  overflow: hidden;
+}
+
+.teamItem:hover .teamMemberImage {
+  transform: scale(1.05);
+}
+
+.teamItemText {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+}
+
+/* Fallback for when images fail to load */
+.teamItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+  z-index: 0;
+} 

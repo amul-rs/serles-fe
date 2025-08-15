@@ -13,11 +13,35 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'serlesbackend.vercel.app',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '',
+        pathname: '/**',
+      }
+    ],
   },
   
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['react-icons'],
+    optimizeCss: true,
   },
   
   // Compression and optimization
@@ -27,8 +51,31 @@ const nextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
   
-  // Security headers
+  // Webpack configuration for better error handling
+  webpack: (config, { dev, isServer }) => {
+    // Add better error handling for image loading
+    config.module.rules.push({
+      test: /\.(png|jpe?g|gif|svg|webp)$/i,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            fallback: 'file-loader',
+            publicPath: '/_next/static/images/',
+            outputPath: 'static/images/',
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
+  
+  // Security headers - less restrictive for development
   async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
+    
     return [
       {
         source: '/(.*)',
@@ -39,7 +86,7 @@ const nextConfig = {
           },
           {
             key: 'X-Content-Type-Options',
-            value: 'nosniff',
+            value: isDev ? 'nosniff' : 'nosniff',
           },
           {
             key: 'X-XSS-Protection',
@@ -47,7 +94,7 @@ const nextConfig = {
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            value: isDev ? 'no-referrer-when-downgrade' : 'origin-when-cross-origin',
           },
           {
             key: 'Permissions-Policy',
@@ -78,6 +125,26 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=3600, s-maxage=3600',
+          },
+        ],
+      },
+      // Add cache headers for images
+      {
+        source: '/img/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      // Fix MIME type issues for static files
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

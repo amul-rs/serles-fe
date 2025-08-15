@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 import Header from './components/Header';
 import Footer from './components/Footer';
+import DebugInfo from './components/DebugInfo';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -61,14 +62,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="/serlesfavicon.ico" />
-        <link rel="manifest" href="/site.webmanifest" />
+        {/* <link rel="manifest" href="/site.webmanifest" /> */}
         <meta name="theme-color" content="#b61123" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
         
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXF11QPRMS"></script>
+        {/* Google Analytics - Fixed referrer policy */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXF11QPRMS" referrerPolicy="no-referrer-when-downgrade"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -77,7 +78,8 @@ export default function RootLayout({ children }) {
               gtag('js', new Date());
               gtag('config', 'G-PXF11QPRMS', {
                 page_path: window.location.pathname,
-                anonymize_ip: true
+                anonymize_ip: true,
+                send_page_view: true
               });
             `
           }}
@@ -106,6 +108,9 @@ export default function RootLayout({ children }) {
         </main>
         
         <Footer />
+        
+        {/* Debug Info - Only in development */}
+        <DebugInfo />
 
         {/* Scripts - Loaded asynchronously */}
         <script src="/js/jquery-3.3.1.min.js" async></script>

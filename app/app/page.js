@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './page.module.css';
 import Banner from './components/home/Banner';
 import Category from './components/home/category';
-import Bestselling from './components/home/Bestselling';
+import BestsellingWrapper from './components/home/BestsellingWrapper';
 import About from './components/home/About';
 import MilestoneBar from './components/home/milestone';
 import Menu from './components/home/Menu';
@@ -24,7 +24,7 @@ export const metadata = {
         <About />
         <MilestoneBar />
         <Menu />
-        <Bestselling /> 
+        <BestsellingWrapper /> 
         <Team />
         <FeaturedCakeCTA />
         <Social />
