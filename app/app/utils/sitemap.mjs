@@ -2,7 +2,7 @@ import { getProductsUrl, getCategoriesUrl, getTagsUrl } from '../config/api';
 import apiCache from './cache';
 
 // Base URL for the website
-const BASE_URL = 'https://serlesbake.in';
+const BASE_URL = 'https://www.serlesbake.in';
 
 // Static pages configuration
 const STATIC_PAGES = [
