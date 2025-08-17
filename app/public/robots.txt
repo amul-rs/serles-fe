@@ -1,16 +1,48 @@
+# Allow ALL search engines and bots to crawl the website
 User-agent: *
+Allow: /
+
+# Specific bots - allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
 Allow: /
 
 # Sitemap
 Sitemap: https://www.serlesbake.in/sitemap.xml
 
-# Disallow admin or private areas
+# Disallow only essential private areas
 Disallow: /api/
 Disallow: /_next/
 Disallow: /admin/
 Disallow: /test-css/
 
-# Allow important pages and sections
+# Explicitly allow all important pages and sections
 Allow: /cakes/
 Allow: /contact
 Allow: /about
@@ -20,15 +52,13 @@ Allow: /terms-conditions
 Allow: /site-map
 Allow: /testimonial
 
-# Crawl delay (optional - helps with server load)
-Crawl-delay: 1
-
-# Additional directives for better SEO
-# Allow all images
+# Allow all static assets for proper rendering
 Allow: /img/
 Allow: /public/
-
-# Allow CSS and JS files for proper rendering
 Allow: /css/
 Allow: /js/
-Allow: /fonts/ 
+Allow: /fonts/
+Allow: /favicon.ico
+
+# Optimized crawl delay for better indexing
+Crawl-delay: 0.5 
