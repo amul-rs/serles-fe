@@ -11,8 +11,8 @@ import Social from './components/home/Social';
 import FeaturedCakeCTA from './components/home/cta';
 import { Metadata } from 'next';
 export const metadata = {
-  title: "Serles Bake - Homemade Custom Cakes in Tenkasi",
-  description: "Serles Bake - Your local homemade cake shop in Tenkasi. We specialize in custom cakes for birthdays, weddings, and special occasions. Order fresh, delicious cakes made with love.",
+  title: "Homemade Cakes in Tenkasi | Serle’s Bake – Custom Birthday & Brownies",
+  description: "Looking for a cake shop near me? Serle’s Bake delivers fresh homemade cakes, brownies, and custom designs across Tenkasi with free personalization.",
   keywords: "cake shop tenkasi, custom cakes, birthday cakes, wedding cakes, homemade cakes, bakery tenkasi, custom cake design, celebration cakes",
 };
   export default function Home() {

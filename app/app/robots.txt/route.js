@@ -3,7 +3,7 @@ export async function GET() {
 Allow: /
 
 # Sitemap
-Sitemap: https://serlesbake.in/sitemap.xml
+Sitemap: https://www.serlesbake.in/sitemap.xml
 
 # Disallow admin or private areas (if any)
 Disallow: /api/

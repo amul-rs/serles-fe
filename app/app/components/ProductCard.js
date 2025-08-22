@@ -10,13 +10,13 @@ export default function ProductCard({ product }) {
         style={{ display: 'block' }}
       >
         <div className="product__item">
-          <div className="product__item__pic set-bg">
+          <div className="product__item__pic set-bg d-flex items-center justify-content-center">
             <Image
               src={product.featured_image?.url || "/img/placeholder.jpg"}
               alt={product.featured_image?.alt_text || product.name}
               width={300}
               height={300}
-              style={{ objectFit: "cover", borderRadius: "20px" }}
+              style={{ objectFit: "cover", borderRadius: "20px", width: "100%", height: "100%" }}
             />
             {product.category && (
               <div className="product__label">
