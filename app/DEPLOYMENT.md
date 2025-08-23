@@ -50,7 +50,7 @@ NEXT_PUBLIC_API_BASE_URL=https://your-api-domain.com
 NEXT_PUBLIC_API_ENDPOINT=/api/products/?format=json
 
 # Website Configuration
-NEXT_PUBLIC_SITE_URL=https://serlesbake.in
+NEXT_PUBLIC_SITE_URL=https://www.serlesbake.in
 NEXT_PUBLIC_SITE_NAME=Serles Bake
 
 # Contact Information
@@ -190,4 +190,4 @@ NEXT_PUBLIC_WHATSAPP=https://wa.me/916383070725
 
 ---
 
-**Your website is now live at: https://serlesbake.in** 🎉 
+**Your website is now live at: https://www.serlesbake.in** 🎉 

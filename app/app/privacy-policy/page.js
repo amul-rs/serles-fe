@@ -1,6 +1,12 @@
 'use client'
 import Breadcrumb from "../components/Breadcrumb";
 
+export const metadata = {
+  title: "Privacy Policy | Best Homemade Cakes Near Me – Serle’s Bake Tenkasi",
+  description: "Read our privacy policy for ordering cakes with Serle’s Bake – Tenkasi’s trusted cake shop for birthday cakes, brownies & custom creations with same-day delivery.",
+  keywords: "cake shop privacy tenkasi, serles bake privacy, order privacy, best cake shop tenkasi",
+};
+
 export default function PrivacyPolicyPage() {
   return (
     <>

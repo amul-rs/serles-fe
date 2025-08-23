@@ -7,8 +7,8 @@ import DebugInfo from './components/DebugInfo';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Serle's Bake - Home Made Cakes | From Our Oven to Your Heart",
-  description: "At Serle's Bake, we bring you the warmth and love of homemade cakes crafted with care and passion. Premium cakes, flavored cakes, custom cakes, and brownies in Tenkasi, Tamil Nadu.",
+  title: "Cakes Near Me in Tenkasi | Birthday, Custom & Homemade Cakes – Serle’s Bake",
+  description: "Order cakes near me with Serle’s Bake – Tenkasi’s homemade cake shop for birthdays, brownies, custom designs & same-day delivery.",
   keywords: "homemade cakes, Serle's Bake, Tenkasi cakes, birthday cakes, wedding cakes, custom cakes, brownies, Tamil Nadu bakery, fresh cakes, premium cakes, flavored cakes",
   authors: [{ name: "Serle's Bake" }],
   creator: "Serle's Bake",
@@ -18,14 +18,14 @@ export const metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://serlesbake.pages.dev'),
+  metadataBase: new URL('https://www.serlesbake.in'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Serle's Bake - Home Made Cakes | From Our Oven to Your Heart",
-    description: "At Serle's Bake, we bring you the warmth and love of homemade cakes crafted with care and passion. Premium cakes, flavored cakes, custom cakes, and brownies in Tenkasi, Tamil Nadu.",
-    url: 'https://serlesbake.in',
+    title: "Cakes Near Me in Tenkasi | Birthday, Custom & Homemade Cakes – Serle’s Bake",
+    description: "Order cakes near me with Serle’s Bake – Tenkasi’s homemade cake shop for birthdays, brownies, custom designs & same-day delivery.",
+    url: 'https://www.serlesbake.in',
     siteName: "Serle's Bake",
     images: [
       {
@@ -40,8 +40,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Serle's Bake - Home Made Cakes | From Our Oven to Your Heart",
-    description: "At Serle's Bake, we bring you the warmth and love of homemade cakes crafted with care and passion. Premium cakes, flavored cakes, custom cakes, and brownies in Tenkasi, Tamil Nadu.",
+    title: "Cakes Near Me in Tenkasi | Birthday, Custom & Homemade Cakes – Serle’s Bake",
+    description: "Order cakes near me with Serle’s Bake – Tenkasi’s homemade cake shop for birthdays, brownies, custom designs & same-day delivery.",
     images: ['/img/logo.png'],
   },
   robots: {

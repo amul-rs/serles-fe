@@ -4,6 +4,12 @@ import Link from "next/link";
 import sitemapUtils from "../utils/sitemap.mjs";
 import { useEffect, useState } from "react";
 
+export const metadata = {
+  title: "Site Map | Best Homemade Cakes Near Me – Serle’s Bake Tenkasi",
+  description: "Explore our site map for Serle’s Bake – Tenkasi’s trusted cake shop for birthday cakes, brownies & custom creations with same-day delivery.",
+  keywords: "cake shop sitemap tenkasi, serles bake sitemap, best cake shop tenkasi",
+};
+
 export default function SiteMapPage() {
   const [sitemapData, setSitemapData] = useState(null);
   const [loading, setLoading] = useState(true);

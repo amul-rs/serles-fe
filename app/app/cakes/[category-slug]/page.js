@@ -33,17 +33,17 @@ export async function generateMetadata({ params }) {
           title: `${categorySlug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Cakes - Serle's Bake | From Our Oven to Your Heart`,
           description: `Discover our collection of ${categorySlug?.replace(/-/g, ' ')} cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`,
           type: 'website',
-          url: `https://serlesbake.in/cakes/${categorySlug}`,
-          images: ['https://serlesbake.in/img/logo.png'],
+          url: `https://www.serlesbake.in/cakes/${categorySlug}`,
+          images: ['https://www.serlesbake.in/img/logo.png'],
         },
         twitter: {
           card: 'summary_large_image',
           title: `${categorySlug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Cakes - Serle's Bake | From Our Oven to Your Heart`,
           description: `Discover our collection of ${categorySlug?.replace(/-/g, ' ')} cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`,
-          images: ['https://serlesbake.in/img/logo.png'],
+          images: ['https://www.serlesbake.in/img/logo.png'],
         },
         alternates: {
-          canonical: `https://serlesbake.in/cakes/${categorySlug}`,
+          canonical: `https://www.serlesbake.in/cakes/${categorySlug}`,
         },
       };
     }
@@ -56,17 +56,17 @@ export async function generateMetadata({ params }) {
         title: `${currentCategory.name} Cakes - Serle's Bake | From Our Oven to Your Heart`,
         description: currentCategory.description || `Discover our collection of ${currentCategory.name} cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect ${currentCategory.name.toLowerCase()} cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`,
         type: 'website',
-        url: `https://serlesbake.in/cakes/${categorySlug}`,
-        images: [currentCategory.image?.url || 'https://serlesbake.in/img/logo.png'],
+        url: `https://www.serlesbake.in/cakes/${categorySlug}`,
+        images: [currentCategory.image?.url || 'https://www.serlesbake.in/img/logo.png'],
       },
       twitter: {
         card: 'summary_large_image',
         title: `${currentCategory.name} Cakes - Serle's Bake | From Our Oven to Your Heart`,
         description: currentCategory.description || `Discover our collection of ${currentCategory.name} cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect ${currentCategory.name.toLowerCase()} cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`,
-        images: [currentCategory.image?.url || 'https://serlesbake.in/img/logo.png'],
+        images: [currentCategory.image?.url || 'https://www.serlesbake.in/img/logo.png'],
       },
       alternates: {
-        canonical: `https://serlesbake.in/cakes/${categorySlug}`,
+        canonical: `https://www.serlesbake.in/cakes/${categorySlug}`,
       },
     };
   } catch (error) {
@@ -79,17 +79,17 @@ export async function generateMetadata({ params }) {
         title: `${categorySlug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Cakes - Serle's Bake | From Our Oven to Your Heart`,
         description: `Discover our collection of ${categorySlug?.replace(/-/g, ' ')} cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`,
         type: 'website',
-        url: `https://serlesbake.in/cakes/${categorySlug}`,
-        images: ['https://serlesbake.in/img/logo.png'],
+        url: `https://www.serlesbake.in/cakes/${categorySlug}`,
+        images: ['https://www.serlesbake.in/img/logo.png'],
       },
       twitter: {
         card: 'summary_large_image',
         title: `${categorySlug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Cakes - Serle's Bake | From Our Oven to Your Heart`,
         description: `Discover our collection of ${categorySlug?.replace(/-/g, ' ')} cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`,
-        images: ['https://serlesbake.in/img/logo.png'],
+        images: ['https://www.serlesbake.in/img/logo.png'],
       },
       alternates: {
-        canonical: `https://serlesbake.in/cakes/${categorySlug}`,
+        canonical: `https://www.serlesbake.in/cakes/${categorySlug}`,
       },
     };
   }

@@ -7,17 +7,17 @@ export async function generateMetadata() {
       title: "Site Map - Serle's Bake | Complete Navigation Guide",
       description: "Explore the complete site map of Serle's Bake. Navigate through all our cake categories, products, and pages.",
       type: 'website',
-      url: 'https://serlesbake.in/site-map',
-      images: ['https://serlesbake.in/img/logo.png'],
+      url: 'https://www.serlesbake.in/site-map',
+      images: ['https://www.serlesbake.in/img/logo.png'],
     },
     twitter: {
       card: 'summary_large_image',
       title: "Site Map - Serle's Bake | Complete Navigation Guide",
       description: "Explore the complete site map of Serle's Bake. Navigate through all our cake categories, products, and pages.",
-      images: ['https://serlesbake.in/img/logo.png'],
+      images: ['https://www.serlesbake.in/img/logo.png'],
     },
     alternates: {
-      canonical: 'https://serlesbake.in/site-map',
+      canonical: 'https://www.serlesbake.in/site-map',
     },
   };
 }

@@ -80,15 +80,15 @@ export default function TagsPage() {
       ? `Browse all cake tags and categories at Serle's Bake. From ${tags.slice(0, 5).map(t => t.name).join(', ')} and more, find the perfect cake for your special occasion. Fresh cakes delivered in Tenkasi, Tamil Nadu.`
       : "Browse all cake tags and categories at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your special occasion. Fresh cakes delivered in Tenkasi, Tamil Nadu.",
     ogType: "website",
-    ogUrl: "https://serlesbake.in/cakes/tags",
-    ogImage: "https://serlesbake.in/img/logo.png",
+    ogUrl: "https://www.serlesbake.in/cakes/tags",
+    ogImage: "https://www.serlesbake.in/img/logo.png",
     twitterCard: "summary_large_image",
     twitterTitle: "All Cake Tags - Serle's Bake | From Our Oven to Your Heart",
     twitterDescription: tags.length > 0 
       ? `Browse all cake tags and categories at Serle's Bake. From ${tags.slice(0, 5).map(t => t.name).join(', ')} and more, find the perfect cake for your special occasion. Fresh cakes delivered in Tenkasi, Tamil Nadu.`
       : "Browse all cake tags and categories at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your special occasion. Fresh cakes delivered in Tenkasi, Tamil Nadu.",
-    twitterImage: "https://serlesbake.in/img/logo.png",
-    canonical: "https://serlesbake.in/cakes/tags"
+    twitterImage: "https://www.serlesbake.in/img/logo.png",
+    canonical: "https://www.serlesbake.in/cakes/tags"
   }), [tags]);
 
   if (loading) {
@@ -153,7 +153,7 @@ export default function TagsPage() {
         <meta name="keywords" content="cake tags, cake categories, bakery tags, Serles Bake" />
         <meta property="og:title" content="All Tags - Serles Bake" />
         <meta property="og:description" content="Browse all cake tags and categories. Find the perfect cake for your special occasion." />
-        <meta property="og:url" content="https://serlesbake.in/cakes/tags" />
+        <meta property="og:url" content="https://www.serlesbake.in/cakes/tags" />
         <meta name="twitter:title" content="All Tags - Serles Bake" />
         <meta name="twitter:description" content="Browse all cake tags and categories. Find the perfect cake for your special occasion." />
       </Head>

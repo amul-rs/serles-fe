@@ -68,27 +68,27 @@ export default function CakesIndexPage() {
 
   // Meta data - dynamically generated from API with fallback
   const metaData = useMemo(() => ({
-    title: "Our Homemade Cakes - Serle's Bake | From Our Oven to Your Heart",
+    title: "Cakes in Tenkasi | Birthday, Custom & Photo Cakes Near Me – Serle’s Bake",
     description: categories.length > 0 
       ? `Explore our premium collection of homemade cakes at Serle's Bake. From ${categories.slice(0, 3).map(c => c.name).join(', ')} and more, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`
       : "Explore our premium collection of homemade cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.",
     keywords: categories.length > 0 
       ? `homemade cakes, Serle's Bake, Tenkasi cakes, ${categories.map(c => c.name.toLowerCase()).join(', ')}, birthday cakes, wedding cakes, custom cakes, Tamil Nadu bakery, fresh cakes delivery`
       : "homemade cakes, Serle's Bake, Tenkasi cakes, Black Forest cake, Red Velvet cake, Choco Truffle cake, custom cakes, birthday cakes, wedding cakes, brownies, Tamil Nadu bakery, fresh cakes delivery",
-    ogTitle: "Our Homemade Cakes - Serle's Bake | From Our Oven to Your Heart",
+    ogTitle: "Cakes in Tenkasi | Birthday, Custom & Photo Cakes Near Me – Serle’s Bake",
     ogDescription: categories.length > 0 
       ? `Explore our premium collection of homemade cakes at Serle's Bake. From ${categories.slice(0, 3).map(c => c.name).join(', ')} and more, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`
       : "Explore our premium collection of homemade cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.",
     ogType: "website",
-    ogUrl: "https://serlesbake.in/cakes",
-    ogImage: "https://serlesbake.in/img/logo.png",
+    ogUrl: "https://www.serlesbake.in/cakes",
+    ogImage: "https://www.serlesbake.in/img/logo.png",
     twitterCard: "summary_large_image",
-    twitterTitle: "Our Homemade Cakes - Serle's Bake | From Our Oven to Your Heart",
+    twitterTitle: "Cakes in Tenkasi | Birthday, Custom & Photo Cakes Near Me – Serle’s Bake",
     twitterDescription: categories.length > 0 
       ? `Explore our premium collection of homemade cakes at Serle's Bake. From ${categories.slice(0, 3).map(c => c.name).join(', ')} and more, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.`
       : "Explore our premium collection of homemade cakes at Serle's Bake. From Black Forest to Red Velvet, Choco Truffle to Custom Cakes, find the perfect cake for your celebration. Fresh cakes delivered in Tenkasi, Tamil Nadu.",
-    twitterImage: "https://serlesbake.in/img/logo.png",
-    canonical: "https://serlesbake.in/cakes"
+    twitterImage: "https://www.serlesbake.in/img/logo.png",
+    canonical: "https://www.serlesbake.in/cakes"
   }), [categories]);
 
   if (loading) {

@@ -4,9 +4,36 @@ import { Metadata } from "next";
 import Cta from "@/app/components/home/cta";
 
 export const metadata = {
-  title: "Menu & Pricing - Serles Bake | Custom Cakes Tenkasi",
-  description: "Explore our delicious cake menu at Serles Bake, Tenkasi. From birthday cakes to wedding cakes, find prices for all our homemade custom cakes and desserts.",
+  title: "Cake Menu | Birthday, Custom & Homemade Cakes in Tenkasi – Serle’s Bake",
+  description: "Check out Serle’s Bake menu – birthday cakes, brownies, photo cakes, blackforest, red velvet & more. Fresh homemade cakes with doorstep delivery in Tenkasi.",
   keywords: "cake menu tenkasi, cake prices, custom cake cost, birthday cake pricing, wedding cake menu, homemade cakes tenkasi",
+  openGraph: {
+    title: "Cake Menu | Birthday, Custom & Homemade Cakes in Tenkasi – Serle’s Bake",
+    description: "Check out Serle’s Bake menu – birthday cakes, brownies, photo cakes, blackforest, red velvet & more. Fresh homemade cakes with doorstep delivery in Tenkasi.",
+    url: "https://www.serlesbake.in/menu",
+    siteName: "Serle’s Bake",
+    type: "website",
+    images: [
+      {
+        url: "/img/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Serle’s Bake Logo",
+      },
+    ],
+    locale: "en_US",
+    siteName: "Serle’s Bake",
+    type: "website",
+    twitter: {
+      card: "summary_large_image",
+      title: "Cake Menu | Birthday, Custom & Homemade Cakes in Tenkasi – Serle’s Bake",
+      description: "Check out Serle’s Bake menu – birthday cakes, brownies, photo cakes, blackforest, red velvet & more. Fresh homemade cakes with doorstep delivery in Tenkasi.",
+      images: ["/img/logo.png"],
+    },
+  },
+  alternates: {
+    canonical: "/menu",
+  },  
 };
 
 export default function MenuPage() {

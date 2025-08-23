@@ -3,12 +3,12 @@ import Breadcrumb from "../components/Breadcrumb";
 import { Metadata } from "next";
 
 export const metadata = {
-  title: "Customer Reviews - Serles Bake | Tenkasi's Favorite Cake Shop",
-  description: "Read what our happy customers say about Serles Bake in Tenkasi. Discover why we're trusted for custom cakes, birthday cakes, and wedding cakes.",
+  title: "Customer Reviews | Best Homemade Cakes Near Me – Serle’s Bake Tenkasi",
+  description: "See what our happy customers say about Serle’s Bake – Tenkasi’s trusted cake shop for birthday cakes, brownies & custom creations with same-day delivery.",
   keywords: "cake shop reviews tenkasi, serles bake testimonials, customer feedback, best cake shop tenkasi",
   openGraph: {
-    title: "Customer Reviews - Serles Bake | Tenkasi's Favorite Cake Shop",
-    description: "Read what our happy customers say about Serles Bake in Tenkasi. Discover why we're trusted for custom cakes, birthday cakes, and wedding cakes.",
+    title: "Customer Reviews | Best Homemade Cakes Near Me – Serle’s Bake Tenkasi",
+    description: "See what our happy customers say about Serle’s Bake – Tenkasi’s trusted cake shop for birthday cakes, brownies & custom creations with same-day delivery.",
     url: "https://www.instagram.com/serlesbake/",
     siteName: "Serles Bake",
     type: "website",

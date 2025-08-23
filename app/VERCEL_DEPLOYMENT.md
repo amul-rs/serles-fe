@@ -24,7 +24,7 @@ NEXT_PUBLIC_CATEGORIES_ENDPOINT=/api/categories/?format=json
 NEXT_PUBLIC_TAGS_ENDPOINT=/api/tags/?format=json
 
 # Website Configuration
-NEXT_PUBLIC_SITE_URL=https://serlesbake.in
+NEXT_PUBLIC_SITE_URL=https://www.serlesbake.in
 NEXT_PUBLIC_SITE_NAME=Serles Bake
 
 # Contact Information
