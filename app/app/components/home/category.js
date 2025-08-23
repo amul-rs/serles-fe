@@ -9,7 +9,7 @@ async function fetchCategories() {
     throw new Error('Failed to fetch categories');
   }
   const categoriesData = await res.json();
-  return categoriesData.results;
+  return categoriesData;
 }
 
 export default async function Category() {

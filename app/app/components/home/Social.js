@@ -1,5 +1,5 @@
 "use client"
-import { FaInstagram, FaGoogle } from 'react-icons/fa';
+import { FaInstagram, FaGoogle, FaYoutube } from 'react-icons/fa';
 
 export default function Social() {
     return (
@@ -7,7 +7,7 @@ export default function Social() {
             <div className="container">
                 <div className="row">
                     {/* Instagram Widget - Left Side */}
-                    <div className="col-lg-6 mb-4">
+                    <div className="col-lg-4 mb-4">
                         <div style={{
                             background: "#fff",
                             borderRadius: "16px",
@@ -145,8 +145,145 @@ export default function Social() {
                         </div>
                     </div>
 
+                    {/* YouTube Widget - Middle */}
+                    <div className="col-lg-4 mb-4">
+                        <div style={{
+                            background: "#fff",
+                            borderRadius: "16px",
+                            boxShadow: "0 10px 40px rgba(0,0,0,0.1)",
+                            padding: "30px",
+                            border: "1px solid #f0f0f0",
+                            height: "100%"
+                        }}>
+                            <div style={{ display: "flex", alignItems: "center", marginBottom: "25px" }}>
+                                <div style={{
+                                    width: "50px",
+                                    height: "50px",
+                                    background: "#ff0000",
+                                    borderRadius: "50%",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    marginRight: "15px"
+                                }}>
+                                    <FaYoutube style={{ 
+                                        color: "#fff", 
+                                        fontSize: "1.8rem" 
+                                    }} />
+                                </div>
+                                <div>
+                                    <h3 style={{ 
+                                        margin: "0", 
+                                        fontSize: "1.4rem", 
+                                        fontWeight: "700",
+                                        color: "#333"
+                                    }}>
+                                        Watch Our Videos
+                                    </h3>
+                                    <p style={{ 
+                                        margin: "5px 0 0 0", 
+                                        fontSize: "1rem", 
+                                        color: "#666"
+                                    }}>
+                                        @SerlesBake
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            {/* YouTube Video Preview */}
+                            <div style={{ 
+                                background: "#f8f9fa", 
+                                padding: "20px", 
+                                borderRadius: "12px",
+                                marginBottom: "25px",
+                                textAlign: "center"
+                            }}>
+                                <div style={{
+                                    width: "100%",
+                                    height: "120px",
+                                    background: "#ff0000",
+                                    borderRadius: "12px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    color: "#fff",
+                                    fontSize: "3rem",
+                                    marginBottom: "15px",
+                                    position: "relative",
+                                    overflow: "hidden"
+                                }}>
+                                    <FaYoutube />
+                                    <div style={{
+                                        position: "absolute",
+                                        top: "50%",
+                                        left: "50%",
+                                        transform: "translate(-50%, -50%)",
+                                        background: "rgba(255,255,255,0.9)",
+                                        borderRadius: "50%",
+                                        width: "40px",
+                                        height: "40px",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center"
+                                    }}>
+                                        <i className="fas fa-play" style={{ color: "#ff0000", fontSize: "1.2rem" }}></i>
+                                    </div>
+                                </div>
+                                <h4 style={{ 
+                                    margin: "0 0 10px 0", 
+                                    fontSize: "1.1rem", 
+                                    fontWeight: "600",
+                                    color: "#333"
+                                }}>
+                                    Cake Making Tutorials
+                                </h4>
+                                <p style={{ 
+                                    fontSize: "0.9rem", 
+                                    color: "#666",
+                                    margin: "0"
+                                }}>
+                                    Learn the art of cake making with our step-by-step videos
+                                </p>
+                            </div>
+                            
+                            <a 
+                                href="https://www.youtube.com/@SerlesBake" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{
+                                    background: "#ff0000",
+                                    color: "#fff",
+                                    border: "none",
+                                    borderRadius: "25px",
+                                    padding: "12px 30px",
+                                    fontSize: "1rem",
+                                    fontWeight: "600",
+                                    cursor: "pointer",
+                                    width: "100%",
+                                    transition: "all 0.3s ease",
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.5px",
+                                    textDecoration: "none",
+                                    display: "block",
+                                    textAlign: "center"
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.target.style.transform = "translateY(-3px)";
+                                    e.target.style.boxShadow = "0 8px 25px rgba(255, 0, 0, 0.4)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.target.style.transform = "translateY(0)";
+                                    e.target.style.boxShadow = "none";
+                                }}
+                            >
+                                <FaYoutube style={{ marginRight: "8px", display: "inline" }} />
+                                Subscribe on YouTube
+                            </a>
+                        </div>
+                    </div>
+
                     {/* Google Reviews Widget - Right Side */}
-                    <div className="col-lg-6 mb-4">
+                    <div className="col-lg-4 mb-4">
                         <div style={{
                             background: "#fff",
                             borderRadius: "16px",

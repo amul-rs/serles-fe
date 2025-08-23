@@ -1,162 +1,156 @@
 'use client';
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { getBannersUrl } from "../../config/api";
+
+// Static banner data
+const staticBanners = [
+  {
+    "id": 1,
+    "title": "Independence Theme Cake",
+    "description": "Soft sponge layers in saffron, white, and green with creamy frosting — perfect for Independence Day celebrations.",
+    "image": "https://serlesbackend.vercel.app/api/media/banners/Independencedaycompressed.png",
+    "is_active": true,
+    "order": 0
+  },
+  {
+    "id": 2,
+    "title": "Free Customization",
+    "description": "Get your dream cake with free customization! Design your perfect cake with our expert bakers.",
+    "image": "https://serlesbackend.vercel.app/api/media/banners/freecustomization.png",
+    "is_active": true,
+    "order": 1
+  },
+
+];
 
 export default function Banner() {
-  const [banners, setBanners] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Auto-advance slides
   useEffect(() => {
-    const fetchBanners = async () => {
-      try {
-        const res = await fetch(getBannersUrl());
-        if (!res.ok) throw new Error("Failed to fetch banners");
-        const json = await res.json();
-        const bannerData = Array.isArray(json?.results) ? json.results : [];
-        setBanners(bannerData);
-      } catch (error) {
-        console.error("Error fetching banners:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (staticBanners.length <= 1) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % staticBanners.length);
+    }, 5000);
 
-    fetchBanners();
+    return () => clearInterval(interval);
   }, []);
-
-  if (loading) {
-    return (
-      <section className="container pt-0">
-        <div style={{ 
-          height: 300, 
-          background: "#f8f9fa", 
-          display: "flex", 
-          alignItems: "center", 
-          justifyContent: "center",
-          borderRadius: "12px"
-        }}>
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!banners.length) {
-    return (
-      <section className="container pt-0">
-        <div style={{ 
-          height: 300, 
-          background: "linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%)", 
-          display: "flex", 
-          alignItems: "center", 
-          justifyContent: "center",
-          borderRadius: "12px",
-          border: "2px dashed #e4718a"
-        }}>
-          <div className="text-center">
-            <h4 style={{ color: "#e4718a" }}>No banners available</h4>
-            <p className="text-muted">Check back later for exciting offers!</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="container pt-0">
-      <div style={{ 
-        borderRadius: "12px", 
-        overflow: "hidden",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.1)"
-      }}>
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={20}
-          slidesPerView={1}
-          breakpoints={{
-            768: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            }
-          }}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-            el: '.swiper-pagination-custom',
-          }}
-          loop={banners.length > 1}
-        
-        >
-          {banners.map((banner) => (
-            <SwiperSlide key={banner.id}>
-              <Link href={banner.link || "/"} style={{ display: 'block', height: '100%' }}>
-                <div 
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    backgroundImage: `url(${banner.image || "/img/shop/product-1.jpg"})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    borderRadius: "8px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    position: "relative"
-                  }}
-                >
-                
-                  
-                 
-                </div>
-              </Link>
-            </SwiperSlide>
+      <div className="banner-container">
+        <div className="banner-slider">
+          {staticBanners.map((banner, index) => (
+            <a href="https://wa.me/916383070725" target="_blank" rel="noopener noreferrer"
+              key={banner.id}
+              className={`banner-slide ${index === currentSlide ? 'active' : ''}`}
+              style={{
+                backgroundImage: `url(${banner.image})`,
+              }}
+            >
+              
+           
+            </a>
           ))}
-        </Swiper>
+        </div>
         
-        {/* Custom pagination below the slider */}
-        <div className="swiper-pagination-custom" style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '8px',
-          marginTop: '15px',
-          padding: '0 20px',
-          margin: 'auto',
-        }}></div>
+        {staticBanners.length > 1 && (
+          <div className="banner-dots">
+            {staticBanners.map((_, index) => (
+              <button
+                key={index}
+                className={`banner-dot ${index === currentSlide ? 'active' : ''}`}
+                onClick={() => setCurrentSlide(index)}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
-      <style jsx global>{`
-        .swiper {
-          height: 180px;
+      <style jsx>{`
+        .banner-container {
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+          position: relative;
         }
-        
-        @media (min-width: 768px) {
-          .swiper {
-            height: 250px;
-          }
+
+        .banner-slider {
+          position: relative;
+          height: 250px;
+          overflow: hidden;
         }
-        
-        .swiper-pagination-bullet {
-          background: rgba(255,255,255,0.5);
+
+        .banner-slide {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          opacity: 0;
+          transition: opacity 0.5s ease-in-out;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-decoration: none;
+        }
+
+        .banner-slide.active {
           opacity: 1;
         }
-        
-        .swiper-pagination-bullet-active {
+
+        .banner-dots {
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          padding: 15px;
+          background: rgba(255, 255, 255, 0.9);
+        }
+
+        .banner-dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          border: none;
+          background: rgba(0, 0, 0, 0.3);
+          cursor: pointer;
+          transition: background 0.3s ease;
+        }
+
+        .banner-dot.active {
           background: #e4718a;
         }
-        
 
+        /* Desktop: Show 2 banners side by side */
+        @media (min-width: 768px) {
+          .banner-slider {
+            height: 300px;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+          }
+
+          .banner-slide {
+            position: relative;
+            opacity: 1;
+            flex: 1;
+            border-radius: 8px;
+          }
+
+          .banner-dots {
+            display: none;
+          }
+        }
+
+        /* Mobile: Show 1 banner at a time */
+        @media (max-width: 767px) {
+          .banner-slider {
+            height: 200px;
+          }
+        }
       `}</style>
     </section>
   );
