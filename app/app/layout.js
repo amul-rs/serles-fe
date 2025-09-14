@@ -175,6 +175,72 @@ export default function RootLayout({ children }) {
         </main>
         
         <Footer />
+        <script src='https://www.noupe.com/embed/019947270aa97316ae2fc391b37f8cc91986.js' ></script>
+        
+        {/* Noupe Chatbot Position Override */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // Function to position Noupe chatbot to left
+            function positionNoupeChatbot() {
+              const chatbotContainer = document.getElementById('JotformAgent-019947270aa97316ae2fc391b37f8cc91986');
+              const embeddedContainer = document.querySelector('#JotformAgent-019947270aa97316ae2fc391b37f8cc91986 .embedded-agent-container');
+              const isMobile = window.innerWidth <= 768;
+              
+              if (chatbotContainer) {
+                chatbotContainer.style.setProperty('left', isMobile ? '10px' : '20px', 'important');
+                chatbotContainer.style.setProperty('right', 'auto', 'important');
+                chatbotContainer.style.setProperty('bottom', isMobile ? '10px' : '20px', 'important');
+                chatbotContainer.style.setProperty('justify-content', 'flex-start', 'important');
+                chatbotContainer.style.setProperty('align-items', 'flex-start', 'important');
+                chatbotContainer.style.setProperty('display', 'flex', 'important');
+              }
+              
+              if (embeddedContainer) {
+                embeddedContainer.style.setProperty('left', isMobile ? '10px' : '20px', 'important');
+                embeddedContainer.style.setProperty('right', 'auto', 'important');
+                embeddedContainer.style.setProperty('bottom', isMobile ? '10px' : '20px', 'important');
+                embeddedContainer.style.setProperty('justify-content', 'flex-start', 'important');
+                embeddedContainer.style.setProperty('align-items', 'flex-start', 'important');
+                embeddedContainer.style.setProperty('display', 'flex', 'important');
+              }
+            }
+            
+            // Try to position immediately
+            positionNoupeChatbot();
+            
+            // Also try after DOM is loaded
+            document.addEventListener('DOMContentLoaded', positionNoupeChatbot);
+            
+            // And try after window is fully loaded
+            window.addEventListener('load', function() {
+              setTimeout(positionNoupeChatbot, 1000);
+              setTimeout(positionNoupeChatbot, 3000);
+            });
+            
+            // Reposition on window resize (for mobile orientation change)
+            window.addEventListener('resize', function() {
+              setTimeout(positionNoupeChatbot, 100);
+            });
+            
+            // Watch for when the chatbot element is added to DOM
+            const observer = new MutationObserver(function(mutations) {
+              mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList') {
+                  mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1 && (
+                        node.id === 'JotformAgent-019947270aa97316ae2fc391b37f8cc91986' ||
+                        node.querySelector && node.querySelector('#JotformAgent-019947270aa97316ae2fc391b37f8cc91986')
+                    )) {
+                      setTimeout(positionNoupeChatbot, 100);
+                    }
+                  });
+                }
+              });
+            });
+            
+            observer.observe(document.body, { childList: true, subtree: true });
+          `
+        }} />
         
         {/* Debug Info - Only in development */}
         <DebugInfo />
