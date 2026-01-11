@@ -3,6 +3,7 @@ import "./globals.scss";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import DebugInfo from './components/DebugInfo';
+import MicrosoftClarity from './components/MicrosoftClarity';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -68,7 +69,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Oswald:wght@500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
-        
+
         {/* Google Analytics - Fixed referrer policy */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-PXF11QPRMS" referrerPolicy="no-referrer-when-downgrade"></script>
         <script
@@ -85,7 +86,7 @@ export default function RootLayout({ children }) {
             `
           }}
         />
-        
+
         {/* Facebook Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{
@@ -104,15 +105,15 @@ export default function RootLayout({ children }) {
           }}
         />
         <noscript>
-          <img 
-            height="1" 
-            width="1" 
-            style={{display: 'none'}}
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
             src="https://www.facebook.com/tr?id=1270870504177513&ev=PageView&noscript=1"
             alt=""
           />
         </noscript>
-        
+
         {/* Template CSS Files */}
         <link rel="stylesheet" href="/css/style.css" />
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -124,7 +125,7 @@ export default function RootLayout({ children }) {
         <link rel="stylesheet" href="/css/nice-select.css" />
         <link rel="stylesheet" href="/css/owl.carousel.min.css" />
         <link rel="stylesheet" href="/css/slicknav.min.css" />
-        
+
         {/* CSS Loading Fallback */}
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -163,20 +164,23 @@ export default function RootLayout({ children }) {
         }} />
       </head>
       <body className={inter.className}>
+        {/* Microsoft Clarity Analytics */}
+        <MicrosoftClarity />
+
         {/* Page Preloder */}
         <div id="preloder">
           <div className="loader"></div>
         </div>
 
         <Header />
-        
+
         <main>
           {children}
         </main>
-        
+
         <Footer />
         <script src='https://www.noupe.com/embed/019947270aa97316ae2fc391b37f8cc91986.js' ></script>
-        
+
         {/* Noupe Chatbot Position Override */}
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -241,7 +245,7 @@ export default function RootLayout({ children }) {
             observer.observe(document.body, { childList: true, subtree: true });
           `
         }} />
-        
+
         {/* Debug Info - Only in development */}
         <DebugInfo />
 
@@ -255,7 +259,7 @@ export default function RootLayout({ children }) {
         <script src="/js/jquery.barfiller.js"></script>
         <script src="/js/jquery.nicescroll.min.js"></script>
         <script src="/js/main.js"></script>
-        
+
         {/* Preloader Script */}
         <script dangerouslySetInnerHTML={{
           __html: `

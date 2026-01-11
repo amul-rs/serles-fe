@@ -12,6 +12,7 @@
     "vercel-build": "npm run build"
   },
   "dependencies": {
+    "@microsoft/clarity": "^1.0.2",
     "critters": "^0.0.23",
     "next": "15.4.5",
     "react": "^18",
